@@ -1,0 +1,1841 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bhutan CEQ 2022 — Fiscal Policy Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,400&family=Inter:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #ffffff;
+    --surface: #ffffff;
+    --surface-2: #f7f7f5;
+    --surface-3: #f0efec;
+    --border: #e0ddd8;
+    --border-strong: #c8c4bc;
+    --text-primary: #1a1816;
+    --text-secondary: #5a5550;
+    --text-muted: #999590;
+    --accent: #003366;
+    --accent-soft: #e8edf4;
+    --accent-2: #005a8e;
+    --accent-2-soft: #e5f0f7;
+    --accent-rule: #0047b3;
+    --gold: #8c6914;
+    --gold-soft: #faf3e0;
+    --green: #1a6b3c;
+    --green-soft: #e8f4ee;
+    --pending: #7a4a00;
+    --pending-soft: #fdf5e6;
+    --shadow: none;
+    --shadow-lg: none;
+    --nav-width: 220px;
+    --header-h: 72px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text-primary);
+    font-size: 13px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── HEADER ── */
+  .header {
+    background: var(--accent);
+    color: white;
+    padding: 0 40px;
+    height: var(--header-h);
+    position: sticky;
+    top: 0;
+    z-index: 200;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    border-bottom: 3px solid var(--accent-rule);
+  }
+  .header-left { display: flex; flex-direction: column; justify-content: center; }
+  .header-eyebrow {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9.5px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.55);
+    margin-bottom: 3px;
+  }
+  .header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 19px;
+    font-weight: 600;
+    color: white;
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+  }
+  .header-subtitle {
+    font-size: 11px;
+    color: rgba(255,255,255,0.45);
+    margin-top: 3px;
+    font-weight: 300;
+    letter-spacing: 0.02em;
+  }
+  .header-country {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: rgba(255,255,255,0.35);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    border-left: 1px solid rgba(255,255,255,0.2);
+    padding-left: 20px;
+  }
+
+  /* ── SIDEBAR ── */
+  .page-body { display: flex; align-items: flex-start; min-height: calc(100vh - var(--header-h)); }
+
+  .nav-sidebar {
+    width: var(--nav-width);
+    flex-shrink: 0;
+    background: var(--surface-2);
+    border-right: 1px solid var(--border);
+    position: sticky;
+    top: var(--header-h);
+    max-height: calc(100vh - var(--header-h));
+    overflow-y: auto;
+    order: 1;
+    scrollbar-width: none;
+    padding-bottom: 32px;
+  }
+  .nav-sidebar::-webkit-scrollbar { display: none; }
+
+  .nav-sidebar-title {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    padding: 24px 20px 10px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 6px;
+  }
+
+  .nav-tab {
+    padding: 9px 20px 9px 16px;
+    font-size: 12.5px;
+    font-weight: 400;
+    color: var(--text-secondary);
+    cursor: pointer;
+    border-left: 3px solid transparent;
+    transition: all 0.12s ease;
+    user-select: none;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    line-height: 1.3;
+  }
+  .nav-tab:hover {
+    color: var(--text-primary);
+    background: var(--surface-3);
+    border-left-color: var(--border-strong);
+  }
+  .nav-tab.active {
+    color: var(--accent);
+    border-left-color: var(--accent-rule);
+    background: var(--accent-soft);
+    font-weight: 600;
+  }
+  .nav-tab .tab-icon { font-size: 12px; flex-shrink: 0; opacity: 0.7; }
+  .nav-tab.active .tab-icon { opacity: 1; }
+
+  /* ── MAIN ── */
+  .main {
+    padding: 36px 48px 80px;
+    flex: 1;
+    min-width: 0;
+    order: 2;
+    max-width: 1100px;
+  }
+  .section { display: none; }
+  .section.active { display: block; animation: fadeIn 0.18s ease; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+
+  /* ── SECTION HEADER ── McKinsey chapter opener ── */
+  .section-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 28px;
+    padding-bottom: 16px;
+    border-bottom: 2px solid var(--text-primary);
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--text-primary);
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+  }
+  .section-desc {
+    font-size: 12px;
+    color: var(--text-secondary);
+    margin-top: 5px;
+    max-width: 580px;
+    line-height: 1.55;
+    font-weight: 300;
+  }
+  .source-links { display: flex; flex-direction: column; gap: 4px; align-items: flex-end; flex-shrink: 0; }
+  .source-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 10px;
+    font-family: 'IBM Plex Mono', monospace;
+    color: var(--accent-2);
+    text-decoration: none;
+    padding: 3px 8px;
+    border: 1px solid var(--accent-2-soft);
+    background: var(--accent-2-soft);
+    border-radius: 3px;
+    transition: opacity 0.12s;
+    white-space: nowrap;
+    letter-spacing: 0.02em;
+  }
+  .source-link:hover { opacity: 0.7; }
+
+  /* ── INFO BOXES ── */
+  .info-box {
+    padding: 12px 16px;
+    margin-bottom: 16px;
+    border-left: 3px solid var(--border-strong);
+    background: var(--surface-2);
+  }
+  .info-box.pending {
+    border-left-color: var(--pending);
+    background: var(--pending-soft);
+  }
+  .info-box-label {
+    font-size: 9.5px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-family: 'IBM Plex Mono', monospace;
+    margin-bottom: 5px;
+    color: var(--text-muted);
+  }
+  .info-box.pending .info-box-label { color: var(--pending); }
+  .info-box p { font-size: 12.5px; line-height: 1.6; color: var(--text-secondary); }
+
+  /* ── GRIDS ── */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin-bottom: 20px; }
+
+  /* ── TABLE CARD ── McKinsey exhibit style ── */
+  .tcard {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    margin-bottom: 24px;
+    overflow: hidden;
+  }
+  .tcard-head {
+    background: var(--text-primary);
+    color: white;
+    padding: 11px 18px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 10px;
+    border-bottom: 2px solid var(--accent-rule);
+  }
+  .tcard-head h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 13.5px;
+    font-weight: 600;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+  }
+  .tcard-head .sub {
+    font-size: 10px;
+    color: rgba(255,255,255,0.45);
+    font-family: 'IBM Plex Mono', monospace;
+    margin-top: 2px;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+  }
+  .tcard-head-alt { background: var(--accent-2); border-bottom-color: #004a78; }
+  .tcard-head-gold { background: #4a3800; border-bottom-color: var(--gold); }
+
+  /* ── DATA TABLE ── */
+  table.dt { width: 100%; border-collapse: collapse; }
+  table.dt th {
+    background: var(--surface-2);
+    padding: 7px 14px;
+    text-align: left;
+    font-size: 9.5px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    border-bottom: 1px solid var(--border-strong);
+    font-family: 'IBM Plex Mono', monospace;
+  }
+  table.dt th.h22 { background: var(--accent-2-soft); color: var(--accent-2); }
+  table.dt th.h17 { background: #f4f2ee; color: #7a6f60; }
+  table.dt td {
+    padding: 9px 14px;
+    border-bottom: 1px solid var(--border);
+    font-size: 12.5px;
+    vertical-align: top;
+    line-height: 1.5;
+  }
+  table.dt tr:last-child td { border-bottom: none; }
+  table.dt tr:hover td { background: var(--surface-2); }
+  table.dt td.lbl { font-weight: 600; font-size: 12px; color: var(--text-primary); }
+  table.dt td.sub-lbl { padding-left: 28px; color: var(--text-secondary); font-size: 12px; }
+  table.dt td.v22 { color: var(--accent-2); font-weight: 500; }
+  table.dt td.v17 { color: var(--text-secondary); }
+  table.dt td.grp { background: var(--surface-3); font-weight: 700; font-size: 12px; border-top: 1px solid var(--border-strong); }
+  table.dt td.num { font-family: 'IBM Plex Mono', monospace; font-size: 12px; }
+  table.dt td.num22 { font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: var(--accent-2); font-weight: 500; }
+
+  /* ── RATE PILL ── */
+  .rp {
+    display: inline-block;
+    padding: 1px 7px;
+    border-radius: 2px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10.5px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+  }
+  .rp0 { background: var(--green-soft); color: var(--green); }
+  .rp10 { background: var(--accent-2-soft); color: var(--accent-2); }
+  .rp15 { background: var(--gold-soft); color: var(--gold); }
+  .rp20 { background: #fef5e0; color: #7a4a00; }
+  .rp25 { background: #fdecea; color: #8a2020; }
+  .rp30 { background: #f8eaf2; color: #6b1f54; }
+  .rp100 { background: #faebeb; color: #7a1a1a; }
+
+  /* ── STATUS TAG ── */
+  .stag {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    font-size: 9.5px;
+    font-family: 'IBM Plex Mono', monospace;
+    padding: 2px 7px;
+    border-radius: 2px;
+    font-weight: 500;
+    vertical-align: middle;
+    white-space: nowrap;
+    letter-spacing: 0.04em;
+  }
+  .stag-src { background: var(--green-soft); color: var(--green); }
+  .stag-new { background: var(--accent-soft); color: var(--accent); }
+  .stag-pend { background: var(--pending-soft); color: var(--pending); }
+
+  /* ── DIVIDER ── */
+  .divider { height: 1px; background: var(--border); margin: 24px 0; }
+
+  /* ── SUB-TABS ── */
+  .sub-nav {
+    display: flex;
+    gap: 0;
+    margin-bottom: 24px;
+    border-bottom: 2px solid var(--border);
+  }
+  .sub-tab {
+    padding: 9px 20px;
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--text-secondary);
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -2px;
+    white-space: nowrap;
+    transition: all 0.12s ease;
+    user-select: none;
+    letter-spacing: 0.01em;
+  }
+  .sub-tab:hover { color: var(--text-primary); }
+  .sub-tab.active {
+    color: var(--accent);
+    border-bottom-color: var(--accent-rule);
+    font-weight: 600;
+  }
+  .sub-section { display: none; }
+  .sub-section.active { display: block; animation: fadeIn 0.18s ease; }
+
+  /* ── HIGHLIGHT ROW ── */
+  .hl td { background: var(--surface-2) !important; font-weight: 600; border-top: 1px solid var(--border-strong) !important; }
+  .hl td.v22 { color: var(--accent-2) !important; }
+
+  /* ── NARRATIVE TEXT BLOCK ── */
+  .prose-block {
+    padding: 20px 24px;
+    font-size: 13px;
+    line-height: 1.75;
+    color: var(--text-primary);
+    font-family: 'Source Serif 4', serif;
+    font-weight: 400;
+  }
+  .prose-block p + p { margin-top: 12px; }
+  .prose-block ul { margin: 10px 0 0 22px; }
+  .prose-block li { margin-bottom: 5px; }
+  .prose-note {
+    padding: 9px 24px;
+    font-size: 10.5px;
+    color: var(--text-muted);
+    border-top: 1px solid var(--border);
+    font-family: 'IBM Plex Mono', monospace;
+    line-height: 1.6;
+    background: var(--surface-2);
+  }
+
+  @media(max-width:900px) {
+    .header { padding: 0 18px; height: auto; min-height: var(--header-h); }
+    .main { padding: 20px 20px 60px; }
+    .grid-2, .grid-3 { grid-template-columns: 1fr; }
+    .section-header { flex-direction: column; }
+    .source-links { align-items: flex-start; }
+    .page-body { flex-direction: column; }
+    .nav-sidebar { width: 100%; order: 1; position: static; max-height: none; border-right: none; border-bottom: 1px solid var(--border); display: flex; flex-wrap: wrap; padding: 8px; gap: 4px; padding-bottom: 8px; }
+    .nav-sidebar-title { display: none; }
+    .nav-tab { border-left: none; border-bottom: 2px solid transparent; border-radius: 3px; padding: 6px 10px; font-size: 11.5px; flex: none; }
+    .nav-tab.active { border-bottom-color: var(--accent-rule); background: var(--accent-soft); }
+    .main { order: 2; }
+  }
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-left">
+    <div class="header-eyebrow">Commitment to Equity Analysis · Bhutan</div>
+    <h1>Fiscal Policy Reference Dashboard</h1>
+    <div class="header-subtitle">CEQ 2017 → 2022 Update</div>
+  </div>
+  <div class="header-country">🇧🇹 Bhutan<br>2017 – 2022</div>
+</header>
+
+<!-- HOW TO COMMENT BANNER -->
+<div style="background:#f0f4ff; border-bottom:2px solid #0047b3; padding:10px 40px; display:flex; align-items:center; justify-content:space-between; gap:20px; flex-wrap:wrap;">
+  <div style="display:flex; align-items:center; gap:12px;">
+    <span style="font-size:20px;">💬</span>
+    <div>
+      <div style="font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:0.12em; text-transform:uppercase; color:#0047b3; font-weight:600;">How to leave a comment</div>
+      <div style="font-size:12px; color:#1a1816; margin-top:2px;">
+        <strong>1.</strong> Join the review group using the link your team shared with you &nbsp;·&nbsp;
+        <strong>2.</strong> Select <strong>CEQ Bhutan Review Team</strong> in the Hypothesis sidebar (not "Public") &nbsp;·&nbsp;
+        <strong>3.</strong> <strong>Highlight</strong> any text or number on the page &nbsp;·&nbsp;
+        <strong>4.</strong> Click <strong>Annotate</strong> → type your note → <strong>Post to group</strong>
+      </div>
+    </div>
+  </div>
+  <div style="display:flex; gap:8px; flex-wrap:wrap; flex-shrink:0;">
+    <a href="https://hypothes.is/groups" target="_blank" style="display:inline-flex; align-items:center; gap:5px; background:#0047b3; color:white; padding:6px 14px; font-size:11.5px; font-family:'IBM Plex Mono',monospace; text-decoration:none; border-radius:3px; white-space:nowrap;">🔗 Join Review Group</a>
+    <a href="README_User_Guide.md" target="_blank" style="display:inline-flex; align-items:center; gap:5px; background:white; color:#0047b3; border:1px solid #0047b3; padding:6px 14px; font-size:11.5px; font-family:'IBM Plex Mono',monospace; text-decoration:none; border-radius:3px; white-space:nowrap;">📄 Full User Guide</a>
+  </div>
+</div>
+
+<div class="page-body">
+<nav class="nav-sidebar">
+  <div class="nav-sidebar-title">Fiscal Interventions</div>
+  <div class="nav-tab active" onclick="showTab('direct-taxes')" data-tab="direct-taxes"><span class="tab-icon">💳</span> Direct Taxes</div>
+  <div class="nav-tab" onclick="showTab('indirect-taxes')" data-tab="indirect-taxes"><span class="tab-icon">🏷️</span> Indirect Taxes</div>
+  <div class="nav-tab" onclick="showTab('transfers')" data-tab="transfers"><span class="tab-icon">🤝</span> Transfers</div>
+  <div class="nav-tab" onclick="showTab('subsidies')" data-tab="subsidies"><span class="tab-icon">⚡</span> Subsidies</div>
+  <div class="nav-tab" onclick="showTab('social')" data-tab="social"><span class="tab-icon">🛡️</span> Social Insurance</div>
+  <div class="nav-tab" onclick="showTab('education')" data-tab="education"><span class="tab-icon">🎓</span> Education</div>
+  <div class="nav-tab" onclick="showTab('health')" data-tab="health"><span class="tab-icon">🏥</span> Health</div>
+  <div class="nav-tab" onclick="showTab('govexp')" data-tab="govexp"><span class="tab-icon">🏛️</span> Gov. Expenditure</div>
+  <div class="nav-tab" onclick="showTab('taxrev')" data-tab="taxrev"><span class="tab-icon">📊</span> Tax Revenue</div>
+</nav>
+<main class="main">
+
+<!-- ═══════════════════════════════════════════════════
+     DIRECT TAXES
+═══════════════════════════════════════════════════ -->
+<section class="section active" id="direct-taxes">
+  <div class="section-header">
+    <div>
+      <div class="section-title">Direct Taxes — Personal Income Tax (PIT)</div>
+      <div class="section-desc">PIT bracket structures across reference years, side by side.</div>
+    </div>
+    <div class="source-links">
+      <a class="source-link" href="#" onclick="return false;">📄 2017: Bhutan CEQ 2017: Rules on the Income Tax Act of Bhutan 2001 (2017)</a>
+      <a class="source-link" href="#" onclick="return false;">📄 Income Tax Act of the Kingdom of Bhutan, 2001</a>
+    </div>
+  </div>
+
+  <div class="grid-2">
+
+    <!-- 2017 -->
+    <div class="tcard">
+      <div class="tcard-head">
+        <div><h3>PIT Brackets — 2017</h3></div>
+      </div>
+      <table class="dt">
+        <thead>
+          <tr><th>Minimum (Nu.)</th><th>Maximum (Nu.)</th><th>Rate</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="num">0</td><td class="num">200,000</td><td><span class="rp rp0">0%</span></td></tr>
+          <tr><td class="num">200,000</td><td class="num">250,000</td><td><span class="rp rp10">10%</span></td></tr>
+          <tr><td class="num">250,000</td><td class="num">500,000</td><td><span class="rp rp15">15%</span></td></tr>
+          <tr><td class="num">500,000</td><td class="num">1,000,000</td><td><span class="rp rp20">20%</span></td></tr>
+          <tr><td class="num">1,000,000</td><td class="num">—</td><td><span class="rp rp25">25%</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 2022–2025 -->
+    <div class="tcard">
+      <div class="tcard-head tcard-head-alt">
+        <div><h3>PIT Brackets — 2022 to 2025</h3></div>
+      </div>
+      <table class="dt">
+        <thead>
+          <tr><th>Minimum (Nu.)</th><th>Maximum (Nu.)</th><th class="h22">Rate</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="num">0</td><td class="num">300,000</td><td class="v22"><span class="rp rp0">Nil</span></td></tr>
+          <tr><td class="num">300,000</td><td class="num">400,000</td><td class="v22"><span class="rp rp10">10%</span></td></tr>
+          <tr><td class="num">400,000</td><td class="num">650,000</td><td class="v22"><span class="rp rp15">15%</span></td></tr>
+          <tr><td class="num">650,000</td><td class="num">1,000,000</td><td class="v22"><span class="rp rp20">20%</span></td></tr>
+          <tr><td class="num">1,000,000</td><td class="num">1,500,000</td><td class="v22"><span class="rp rp25">25%</span></td></tr>
+          <tr><td class="num">1,500,000</td><td class="num">—</td><td class="v22"><span class="rp rp30">30%</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div><!-- end grid-2 -->
+
+  <!-- PIT Eligibility and Income Sources -->
+  <div class="tcard">
+    <div class="tcard-head">
+      <div><h3>PIT — Eligibility &amp; Income Sources</h3></div>
+    </div>
+    <table class="dt">
+      <thead><tr><th style="width:220px">Item</th><th>2017</th><th class="h22">2022 to 2025</th></tr></thead>
+      <tbody>
+        <tr>
+          <td class="lbl">Liable taxpayers (threshold)</td>
+          <td>All citizens and residents earning more than <strong>Nu. 200,000</strong> per year</td>
+          <td class="v22">All citizens and residents earning more than <strong>Nu. 300,000</strong> per year</td>
+        </tr>
+        <tr>
+          <td class="lbl">Income sources subject to PIT</td>
+          <td colspan="2">Salary; property; dividends; interests; income from cash crops; income from hire of privately-owned vehicles, plant and machinery; income from intellectual property rights</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════
+     INDIRECT TAXES
+═══════════════════════════════════════════════════ -->
+<section class="section" id="indirect-taxes">
+
+  <div class="section-header">
+    <div>
+      <div class="section-title">Indirect Taxes</div>
+      <div class="section-desc">2017 vs. 2022 comparison across Sales Tax / GST, Excise Duty, Green Tax, and Custom Duty. Select a tax below to view its detail.</div>
+    </div>
+    <div class="source-links">
+      <a class="source-link" href="#" onclick="return false;">📄 2017: Bhutan CEQ 2017: National Revenue Report 2021-2022</a>
+      <a class="source-link" href="#" onclick="return false;">📄 2022: National Revenue Report 2021-2022</a>
+      <a class="source-link" href="#" onclick="return false;">📄 2026: The Excise Tax Bill of Bhutan 2025</a>
+    </div>
+  </div>
+
+  <!-- SUB-NAV -->
+  <div class="sub-nav">
+    <div class="sub-tab active" onclick="showSubTab('sales-tax')" data-sub="sales-tax">Sales Tax / GST</div>
+    <div class="sub-tab" onclick="showSubTab('excise')" data-sub="excise">Excise Rates</div>
+    <div class="sub-tab" onclick="showSubTab('green-tax')" data-sub="green-tax">Green Tax</div>
+    <div class="sub-tab" onclick="showSubTab('custom-duty')" data-sub="custom-duty">Custom Duty</div>
+  </div>
+
+  <!-- ─────────────────────────────────────────────
+       SUB-TAB: SALES TAX / GST
+  ───────────────────────────────────────────── -->
+  <div class="sub-section active" id="sales-tax">
+
+    <!-- Overview comparison -->
+    <div class="tcard">
+      <div class="tcard-head">
+        <div><h3>Sales Tax / GST — Overview</h3></div>
+      </div>
+      <table class="dt">
+        <thead>
+          <tr>
+            <th style="width:200px">Aspect</th>
+            <th class="h17">2017 — Sales Tax</th>
+            <th class="h22">2022 — GST</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="lbl">Tax name</td>
+            <td>Sales Tax</td>
+            <td class="v22">Goods and Services Tax (GST)</td>
+          </tr>
+          <tr>
+            <td class="lbl">Status</td>
+            <td>In force</td>
+            <td class="v22">GST passed 2020; planned to take effect mid-2022, replacing the existing sales tax system</td>
+          </tr>
+          <tr>
+            <td class="lbl">Rate structure</td>
+            <td>9 ad-valorem + 2 specific tax slabs; 0%–100% (narrow base)</td>
+            <td class="v22">Single standard rate of 7% (broad base)</td>
+          </tr>
+          <tr>
+            <td class="lbl">Scope</td>
+            <td>Goods entering the country + limited domestic services (entertainment, hotels). Only 6 types of goods/services subject at point of sale. ~37% of total imports at 0% rate.</td>
+            <td class="v22">Broader base; fewer exemptions than 2017 sales tax system</td>
+          </tr>
+          <tr>
+            <td class="lbl">Exemptions</td>
+            <td>~37% of total imports exempt (0% rate); limited domestic goods</td>
+            <td class="v22">Essential foods (rice, seeds, oils, salt), agriculture inputs, gifts/donations to charities — see rate table below</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 2022 GST rate table (Table A.3) -->
+    <div class="tcard">
+      <div class="tcard-head tcard-head-alt">
+        <div><h3>GST Rates &amp; Exemptions by Category — Table A.3 (2022)</h3></div>
+        
+      </div>
+      <table class="dt">
+        <thead>
+          <tr>
+            <th>Consumption Category</th>
+            <th class="h22">Rate</th>
+            <th class="h22">Exempt?</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>General</td><td class="num v22">7%</td><td>No</td></tr>
+          <tr><td>Essential food items: rice, vegetable seeds, mustard oil, sunflower oil, salt</td><td class="num v22"><span class="rp rp0">0%</span></td><td>Yes</td></tr>
+          <tr><td>Essential food items: fresh dairy products (milk, cheese, butter, curd), egg</td><td class="num v22">7%</td><td>No</td></tr>
+          <tr><td>Agriculture inputs</td><td class="num v22"><span class="rp rp0">0%</span></td><td>Yes</td></tr>
+          <tr><td>Transport by road</td><td class="num v22">7%</td><td>No</td></tr>
+          <tr><td>Postal services</td><td class="num v22">7%</td><td>No</td></tr>
+          <tr><td>Religious services</td><td class="num v22">7%</td><td>No</td></tr>
+          <tr><td>Gifts and donations to charities</td><td class="num v22"><span class="rp rp0">0%</span></td><td>Yes</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 2017 Sales tax rates from Table A.1 -->
+    <div class="tcard">
+      <div class="tcard-head">
+        <div><h3>Sales Tax Rates for Select Items — Table A.1 (2017)</h3></div>
+        
+      </div>
+      <table class="dt">
+        <thead><tr><th>Consumption Category</th><th>Sales Tax Rate (%)</th></tr></thead>
+        <tbody>
+          <tr><td>Alcohol</td><td class="num">100%</td></tr>
+          <tr><td>Juice</td><td class="num">30%</td></tr>
+          <tr><td>Fuel and lubricants for personal transport (petrol, diesel, etc.)</td><td class="num">5%</td></tr>
+          <tr><td>Spare parts and accessories for personal transport</td><td class="num">5%</td></tr>
+          <tr><td>Telecom services</td><td class="num">5%</td></tr>
+          <tr><td>Glass and crystalware (drinking glass)</td><td class="num">5%</td></tr>
+          <tr><td>Electrical and parts thereof, sound recorders and reproducers</td><td class="num">5%</td></tr>
+          <tr><td>Boilers and parts thereof, lighting and heating</td><td class="num">5%</td></tr>
+          <tr><td>Articles of iron or steel</td><td class="num">5%</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div><!-- end sales-tax -->
+
+  <!-- ─────────────────────────────────────────────
+       SUB-TAB: EXCISE RATES
+  ───────────────────────────────────────────── -->
+  <div class="sub-section" id="excise">
+
+    <!-- Nested sub-nav for excise periods -->
+    <div class="excise-inner">
+      <div class="sub-nav" style="margin-bottom:20px;">
+        <div class="sub-tab active" onclick="showSubTab('excise-pre2025')" data-sub="excise-pre2025">2017 &amp; 2021/2022</div>
+        <div class="sub-tab" onclick="showSubTab('excise-2025')" data-sub="excise-2025">2025/2026 Schedule</div>
+      </div>
+
+      <!-- ── Excise: 2017 & 2021/2022 ── -->
+      <div class="sub-section active" id="excise-pre2025">
+
+      <!-- Overview comparison -->
+      <div class="tcard">
+        <div class="tcard-head">
+          <div><h3>Excise Rates — Overview</h3></div>
+        </div>
+        <table class="dt">
+          <thead>
+            <tr><th style="width:200px">Aspect</th><th class="h17">2017</th><th class="h22">2021/2022</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="lbl">Rate range</td><td>30%–75%</td><td class="v22">20% (food/beverage); 100% (tobacco and spirits)</td></tr>
+            <tr><td class="lbl">Scope</td><td>Primarily restricted to domestically manufactured alcoholic beverages. Government also collects fees for liquor exports and excise permit fees for import of beer.</td><td class="v22">Expanded base: food/beverage items (pasta, juice, ice cream, nuts, sugar, water) added at 20%; tobacco at 100%</td></tr>
+            <tr><td class="lbl">Policy mechanism</td><td>Domestic levy on select produced/imported items</td><td class="v22">"Excise equalization rates" applied on top of the 7% GST for products the government wishes to discourage (alcohol, tobacco)</td></tr>
+            <tr><td class="lbl">Tobacco</td><td>Not levied (excise restricted to domestic alcohol in 2017)</td><td class="v22">100% — applied as excise equalization rate on top of GST</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Side-by-side rate tables -->
+      <div class="grid-2">
+        <div class="tcard">
+          <div class="tcard-head">
+            <div><h3>Excise Rates — Table A.2 (2017)</h3></div>
+          </div>
+          <table class="dt">
+            <thead><tr><th>Item</th><th>Rate</th></tr></thead>
+            <tbody>
+              <tr><td>Liquor (rum, whisky, brandy) — Superior Brand</td><td class="num"><span class="rp rp30">30%</span></td></tr>
+              <tr><td>Liquor (rum, whisky, brandy) — Medium Brand</td><td class="num">60%</td></tr>
+              <tr><td>Liquor (rum, whisky, brandy) — Other Brands</td><td class="num"><span class="rp rp100">75%</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="tcard">
+          <div class="tcard-head tcard-head-alt">
+            <div><h3>Excise Rates — Table A.4 (2021/2022)</h3></div>
+          </div>
+          <table class="dt">
+            <thead><tr><th>Item</th><th class="h22">Rate</th></tr></thead>
+            <tbody>
+              <tr><td>Other nuts incl. areca and betel nuts</td><td class="num v22"><span class="rp rp20">20%</span></td></tr>
+              <tr><td>Sugar, incl. molasses and sugar confectionery (gum, chocolate)</td><td class="num v22"><span class="rp rp20">20%</span></td></tr>
+              <tr><td>Pasta</td><td class="num v22"><span class="rp rp20">20%</span></td></tr>
+              <tr><td>Fruit juice</td><td class="num v22"><span class="rp rp20">20%</span></td></tr>
+              <tr><td>Ice cream</td><td class="num v22"><span class="rp rp20">20%</span></td></tr>
+              <tr><td>Water beverage</td><td class="num v22"><span class="rp rp20">20%</span></td></tr>
+              <tr><td>Beverages (nonalcoholic), spirits and vinegar</td><td class="num v22"><span class="rp rp100">100%</span></td></tr>
+              <tr><td>Tobacco and its substitutes</td><td class="num v22"><span class="rp rp100">100%</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Tobacco detail -->
+      <div class="tcard">
+        <div class="tcard-head tcard-head-alt">
+          <div><h3>Tobacco Excise — 2017 vs. 2021/2022 Detail</h3></div>
+        </div>
+        <table class="dt">
+          <thead><tr><th style="width:200px">Feature</th><th class="h17">2017</th><th class="h22">2021–2022</th></tr></thead>
+          <tbody>
+            <tr><td class="lbl">Excise duty rate</td><td>Not applicable — excise restricted to domestic alcohol</td><td class="v22"><span class="rp rp100">100%</span></td></tr>
+            <tr><td class="lbl">Tax classification</td><td>N/A</td><td class="v22">Excise equalization rate</td></tr>
+            <tr><td class="lbl">Application method</td><td>N/A</td><td class="v22">Applied on top of the standard 7% GST rate</td></tr>
+            <tr><td class="lbl">Policy objective</td><td>N/A</td><td class="v22">Discourage use of products deemed harmful or socially undesirable</td></tr>
+            <tr><td class="lbl">Revenue impact</td><td>No specific tobacco excise revenue reported</td><td class="v22">Contributed to "additional revenue from tobacco products" noted in FY2021-2022</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div><!-- end excise-pre2025 -->
+
+    <!-- ── Excise: 2025/2026 Schedule ── -->
+    <div class="sub-section" id="excise-2025">
+
+      <!-- Key compliance notes -->
+      <div class="info-box">
+        <div class="info-box-label">Key Compliance Notes — Excise Tax Act 2025</div>
+        <p><strong>Alcohol Content Basis:</strong> For beer, wine, and liquor, tax is calculated on the <em>litre of alcohol content</em>, not total liquid volume. &nbsp;|&nbsp; <strong>Annual Adjustments:</strong> From 1 July 2026, all specific sums (Nu. 1200, Nu. 1500, etc.) are adjusted annually to reflect CPI changes. &nbsp;|&nbsp; <strong>Registration Fees:</strong> Nu. 100,000/brand for imported liquors; Nu. 35,000 for domestic liquors. &nbsp;|&nbsp; <strong>GST Interaction:</strong> Products are also subject to standard 5% GST at point of sale in addition to excise rates.</p>
+      </div>
+
+      <!-- Simplified product schedule -->
+      <div class="tcard">
+        <div class="tcard-head tcard-head-alt">
+          <div><h3>Excise Tax Rate Schedule — Key Products (Effective 1 January 2026)</h3></div>
+        </div>
+        <table class="dt">
+          <thead>
+            <tr><th>Product</th><th>BTC Code</th><th>Commodity Description</th><th>Unit</th><th class="h22">Rate (2026)</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="grp" colspan="5">Beverages — Alcoholic</td></tr>
+            <tr><td class="lbl">Wine</td><td class="num">2204.10.00</td><td>Sparkling wine of fresh grapes</td><td>LTR</td><td class="num v22">Nu. 1,200 / litre alcohol</td></tr>
+            <tr><td class="lbl">Beer</td><td class="num">2203.00.00</td><td>Beer made from malt</td><td>LTR</td><td class="num v22">Nu. 1,200 / litre alcohol</td></tr>
+            <tr><td class="lbl">Liquor (Whisky)</td><td class="num">2208.30.00</td><td>Whiskies</td><td>LTR</td><td class="num v22">Nu. 1,200 / litre alcohol</td></tr>
+            <tr><td class="lbl">Liquor (Rum)</td><td class="num">2208.40.10</td><td>Rum</td><td>LTR</td><td class="num v22">Nu. 1,200 / litre alcohol</td></tr>
+            <tr><td class="lbl">Alcoholic Beverages (other)</td><td class="num">22.07 / 22.08</td><td>Ethyl alcohol (undenatured/denatured)</td><td>LTR</td><td class="num v22">Nu. 1,200 / litre alcohol</td></tr>
+            <tr><td class="grp" colspan="5">Beverages — Non-Alcoholic</td></tr>
+            <tr><td class="lbl">Carbonated Drinks</td><td class="num">2202.10.20</td><td>Aerated waters (added sugar/flavours)</td><td>LTR</td><td class="num v22"><span class="rp rp25">50%</span></td></tr>
+            <tr><td class="grp" colspan="5">Tobacco &amp; Related</td></tr>
+            <tr><td class="lbl">Cigarette</td><td class="num">2402.20.00</td><td>Cigarettes containing tobacco</td><td>NMB</td><td class="num v22">Nu. 10</td></tr>
+            <tr><td class="lbl">Bedi (Biri)</td><td class="num">2403.19.20</td><td>Biri</td><td>NMB</td><td class="num v22">Nu. 10</td></tr>
+            <tr><td class="lbl">Chewing Tobacco</td><td class="num">2403.99.10</td><td>Khani (chewing tobacco)</td><td>KGM</td><td class="num v22">Nu. 1,500</td></tr>
+            <tr><td class="lbl">Other Tobacco</td><td class="num">2403.11.00</td><td>Water pipe tobacco</td><td>KGM</td><td class="num v22">Nu. 10,000</td></tr>
+            <tr><td class="lbl">Doma (Betelnut)</td><td class="num">2106.10.20</td><td>Supari (betel nut cuts/powder)</td><td>KGM</td><td class="num v22">Nu. 2,000</td></tr>
+            <tr><td class="lbl">Doma Khamtog</td><td class="num">2106.10.10</td><td>Pan masala</td><td>KGM</td><td class="num v22">Nu. 2,000</td></tr>
+            <tr><td class="lbl">Electronic Cigarettes</td><td class="num">85.43</td><td>Electronic cigarettes</td><td>NMB</td><td class="num v22"><span class="rp rp100">100%</span></td></tr>
+            <tr><td class="grp" colspan="5">Motor Vehicles — Passenger Cars</td></tr>
+            <tr><td class="lbl">Family Car (Petrol ≤1,000 cc)</td><td class="num">8703.21.00</td><td>Spark-ignition motor cars</td><td>NMB</td><td class="num v22"><span class="rp rp25">35%</span></td></tr>
+            <tr><td class="lbl">Family Car (Petrol &gt;3,000 cc)</td><td class="num">8703.24.00</td><td>Spark-ignition motor cars &gt;3,000 cc</td><td>NMB</td><td class="num v22">60%</td></tr>
+            <tr><td class="lbl">Family Car (Diesel ≤1,500 cc)</td><td class="num">8703.31.00</td><td>Diesel/semi-diesel</td><td>NMB</td><td class="num v22"><span class="rp rp25">50%</span></td></tr>
+            <tr><td class="lbl">Family Car (Diesel &gt;3,000 cc)</td><td class="num">8703.33.20</td><td>Diesel/semi-diesel &gt;3,000 cc</td><td>NMB</td><td class="num v22">70%</td></tr>
+            <tr><td class="lbl">Family Car (Hybrid ≤1,500 cc)</td><td class="num">8703.40.10</td><td>Hybrid motor cars</td><td>NMB</td><td class="num v22"><span class="rp rp0">2%</span></td></tr>
+            <tr><td class="lbl">Family Car (Electric)</td><td class="num">8703.80.00</td><td>Only electric motor for propulsion</td><td>NMB</td><td class="num v22"><span class="rp rp0">0%</span></td></tr>
+            <tr><td class="grp" colspan="5">Motor Vehicles — Goods &amp; Special Purpose</td></tr>
+            <tr><td class="lbl">Goods Transport (Petrol ≤5T)</td><td class="num">8704.31.00</td><td>Spark-ignition goods vehicles</td><td>NMB</td><td class="num v22"><span class="rp rp0">2%</span></td></tr>
+            <tr><td class="lbl">Goods Transport (Electric)</td><td class="num">8704.60.00</td><td>Only electric motor for propulsion</td><td>NMB</td><td class="num v22"><span class="rp rp0">0%</span></td></tr>
+            <tr><td class="lbl">Tractors (all types)</td><td class="num">87.01</td><td>Tractors</td><td>NMB</td><td class="num v22"><span class="rp rp0">0%</span></td></tr>
+            <tr><td class="grp" colspan="5">Motorcycles</td></tr>
+            <tr><td class="lbl">Motorbikes (≤50 cc)</td><td class="num">8711.10.00</td><td>Motorcycles not exceeding 50 cc</td><td>NMB</td><td class="num v22"><span class="rp rp10">10%</span></td></tr>
+            <tr><td class="lbl">Motorbikes (&gt;800 cc)</td><td class="num">8711.50.00</td><td>Motorcycles exceeding 800 cc</td><td>NMB</td><td class="num v22"><span class="rp rp25">50%</span></td></tr>
+            <tr><td class="lbl">Motorbikes (Electric)</td><td class="num">8711.60.00</td><td>Electric motor propulsion</td><td>NMB</td><td class="num v22"><span class="rp rp0">0%</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div><!-- end excise-2025 -->
+    </div><!-- end excise-inner -->
+
+  </div><!-- end excise -->
+
+  <!-- ─────────────────────────────────────────────
+       SUB-TAB: GREEN TAX
+  ───────────────────────────────────────────── -->
+  <div class="sub-section" id="green-tax">
+
+    <div class="tcard">
+      <div class="tcard-head">
+        <div><h3>Green Tax — Overview</h3></div>
+      </div>
+      <table class="dt">
+        <thead>
+          <tr>
+            <th style="width:200px">Aspect</th>
+            <th class="h17">2017</th>
+            <th class="h22">2022</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="lbl">Status</td>
+            <td>In force (introduced 2012)</td>
+            <td class="v22">Remains in place following tax reforms</td>
+          </tr>
+          <tr>
+            <td class="lbl">Policy objective</td>
+            <td>Protect the environment and reduce carbon dioxide</td>
+            <td class="v22">Unchanged</td>
+          </tr>
+          <tr>
+            <td class="lbl">Motor vehicle rate</td>
+            <td>5%–30% depending on vehicle type</td>
+            <td class="v22">Remains in place; revenue significantly increased</td>
+          </tr>
+          <tr>
+            <td class="lbl">Fuel rate</td>
+            <td>5% on petrol and diesel (applied since 2014)</td>
+            <td class="v22">5% on petrol and diesel (unchanged)</td>
+          </tr>
+          <tr>
+            <td class="lbl">Revenue trend</td>
+            <td>—</td>
+            <td class="v22">Revenue increased by 67.2% in FY2021-2022, driven by higher collections from both fuel and motor vehicles</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 2017 Green Tax rates from Table A.1 -->
+    <div class="tcard">
+      <div class="tcard-head">
+        <div><h3>Green Tax Rates for Select Items — Table A.1 (2017)</h3></div>
+        
+      </div>
+      <table class="dt">
+        <thead><tr><th>Consumption Category</th><th>Green Tax Rate (%)</th></tr></thead>
+        <tbody>
+          <tr><td>Alcohol</td><td class="num">0%</td></tr>
+          <tr><td>Juice</td><td class="num">0%</td></tr>
+          <tr><td>Fuel and lubricants for personal transport (petrol, diesel, etc.)</td><td class="num"><span class="rp rp10">5%</span></td></tr>
+          <tr><td>Spare parts and accessories for personal transport</td><td class="num">0%</td></tr>
+          <tr><td>Telecom services</td><td class="num">0%</td></tr>
+          <tr><td>Glass and crystalware (drinking glass)</td><td class="num">0%</td></tr>
+          <tr><td>Electrical and parts thereof, sound recorders and reproducers</td><td class="num">0%</td></tr>
+          <tr><td>Boilers and parts thereof, lighting and heating</td><td class="num">0%</td></tr>
+          <tr><td>Articles of iron or steel</td><td class="num">0%</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div><!-- end green-tax -->
+
+  <!-- ─────────────────────────────────────────────
+       SUB-TAB: CUSTOM DUTY
+  ───────────────────────────────────────────── -->
+  <div class="sub-section" id="custom-duty">
+
+    <div class="tcard">
+      <div class="tcard-head">
+        <div><h3>Custom Duty — Overview</h3></div>
+      </div>
+      <table class="dt">
+        <thead>
+          <tr>
+            <th style="width:200px">Aspect</th>
+            <th class="h17">2017</th>
+            <th class="h22">2022</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="lbl">Rate structure</td>
+            <td>Variable: 10%–100% depending on item</td>
+            <td class="v22">Flat rate of 10% for most items following rationalisation exercise</td>
+          </tr>
+          <tr>
+            <td class="lbl">Rationale for change</td>
+            <td>Complex, item-specific rates (see Table A.1)</td>
+            <td class="v22">Rationalisation to increase trader compliance, improve transparency, and reduce discriminatory application of different rates</td>
+          </tr>
+          <tr>
+            <td class="lbl">Revenue impact</td>
+            <td>—</td>
+            <td class="v22">Drop in total custom duty collection following rate reduction to flat 10%</td>
+          </tr>
+          <tr>
+            <td class="lbl">Exemptions</td>
+            <td colspan="2">Diplomatic missions and international organizations; Bhutanese organizations and agencies; industrial plant, machinery, spare parts and raw materials; electric or hybrid vehicles; re-exported durable and consumable household and personal effects</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 2017 Custom Duty rates from Table A.1 -->
+    <div class="tcard">
+      <div class="tcard-head">
+        <div><h3>Custom Duty Rates for Select Items — Table A.1 (2017)</h3></div>
+        
+      </div>
+      <table class="dt">
+        <thead>
+          <tr>
+            <th>Consumption Category</th>
+            <th>2017 Custom Duty</th>
+            <th class="h22">2022 Custom Duty</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Alcohol</td><td class="num"><span class="rp rp100">100%</span></td><td class="num v22"><span class="rp rp10">10%</span></td></tr>
+          <tr><td>Juice</td><td class="num">50%</td><td class="num v22"><span class="rp rp10">10%</span></td></tr>
+          <tr><td>Fuel and lubricants for personal transport (petrol, diesel, etc.)</td><td class="num"><span class="rp rp20">20%</span></td><td class="num v22"><span class="rp rp10">10%</span></td></tr>
+          <tr><td>Spare parts and accessories for personal transport</td><td class="num"><span class="rp rp10">10%</span></td><td class="num v22"><span class="rp rp10">10%</span></td></tr>
+          <tr><td>Telecom services</td><td class="num"><span class="rp rp0">0%</span></td><td class="num v22"><span class="rp rp10">10%</span></td></tr>
+          <tr><td>Glass and crystalware (drinking glass)</td><td class="num"><span class="rp rp10">10%</span></td><td class="num v22"><span class="rp rp10">10%</span></td></tr>
+          <tr><td>Electrical and parts thereof, sound recorders and reproducers</td><td class="num"><span class="rp rp10">10%</span></td><td class="num v22"><span class="rp rp10">10%</span></td></tr>
+          <tr><td>Boilers and parts thereof, lighting and heating</td><td class="num"><span class="rp rp10">10%</span></td><td class="num v22"><span class="rp rp10">10%</span></td></tr>
+          <tr><td>Articles of iron or steel</td><td class="num"><span class="rp rp10">10%</span></td><td class="num v22"><span class="rp rp10">10%</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div><!-- end custom-duty -->
+
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     TRANSFERS
+═══════════════════════════════════════════════════ -->
+<section class="section" id="transfers">
+  <div class="section-header">
+    <div>
+      <div class="section-title">Transfers</div>
+      <div class="section-desc">2017: CEQ 2017 — data not available. &nbsp;|&nbsp; 2022–25: Kidu programme (Druk Gyalpo's Relief Kidu).</div>
+    </div>
+    <div class="source-links">
+      <a class="source-link" href="#" onclick="return false;">📄 2022–25: UNICEF. 2025. Social Protection Situational Analysis &amp; Landscaping Assessment</a>
+      <a class="source-link" href="#" onclick="return false;">📄 Bhutan Poverty Assessment</a>
+    </div>
+  </div>
+
+  <div class="tcard">
+    <div class="tcard-head">
+      <div><h3>Kidu (The Royal Grant) — Programme Overview</h3></div>
+      
+    </div>
+    <div class="prose-block">
+      <p>Kidu (The Royal Grant) is Bhutan's largest and most significant social assistance programme, serving as a permanent, non-contributory safety net. While the practice of Kidu has existed since the 17th century, it was systematised in the 1950s and has since been refined into a highly organised management and disbursement system.</p>
+
+      <p style="margin-top:14px; font-weight:600; font-size:13.5px;">Programme Overview and Management</p>
+      <ul style="margin-top:8px; margin-left:24px; line-height:2;">
+        <li><strong>Administration:</strong> Administered by the Office of the Gyalpoi Zimpon and implemented through regional offices and local government officials, including Dzongdas (district governors) and Gups (block leaders).</li>
+        <li><strong>Technology:</strong> Utilizes the Kidu Information System, which is interoperable with databases from the National Land Commission and the Department of Immigration to verify eligibility and track management.</li>
+        <li><strong>Funding:</strong> Financed through the Druk Gyalpo Relief Fund Act 2012, which receives an annual Nu. 100 million replenishment from the Ministry of Finance, along with public and private donations.</li>
+      </ul>
+
+      <p style="margin-top:14px; font-weight:600; font-size:13.5px;">Eligibility Criteria</p>
+      <p style="margin-top:6px;">The Kidu programme is designed to support individuals who fall through the cracks of other social protection systems. It specifically targets:</p>
+      <ul style="margin-top:8px; margin-left:24px; line-height:2;">
+        <li>The poor and extreme poor</li>
+        <li>The landless</li>
+        <li>Persons with disabilities</li>
+        <li>Impoverished children and students</li>
+        <li>Destitute elderly citizens who lack family care</li>
+      </ul>
+
+      <p style="margin-top:14px; font-weight:600; font-size:13.5px;">Transfer Amounts and Sub-Programmes</p>
+      <p style="margin-top:6px;">Kidu provides both cash and in-kind transfers, such as land grants, timber for housing, and scholarships. Key sub-programmes include:</p>
+      <ul style="margin-top:8px; margin-left:24px; line-height:2;">
+        <li><strong>Gensho Zhabtog (Support for the Elderly):</strong> Targeted at destitute senior citizens, providing a monthly stipend of Nu. 1,200. Beneficiaries can also request basic household items and groceries.</li>
+        <li><strong>Funeral Grant:</strong> A grant of Nu. 5,000 is provided to the family of a deceased Gensho Zhabtog beneficiary to cover funeral expenses.</li>
+        <li><strong>Gyalpoi Tozey (Scholarships):</strong> Provides educational support to impoverished students (reaching 1,629 beneficiaries in 2019).</li>
+        <li><strong>Goensho Tshamkhang:</strong> An elderly care home that accommodates up to 78 inhabitants who have no family to care for them.</li>
+      </ul>
+
+      <p style="margin-top:14px; font-weight:600; font-size:13.5px;">Recent Changes and Trends</p>
+      <p style="margin-top:6px;">The most significant recent change to the Kidu framework was its adaptation to address the COVID-19 pandemic:</p>
+      <ul style="margin-top:8px; margin-left:24px; line-height:2;">
+        <li><strong>Druk Gyalpo Relief Kidu (DGRK):</strong> Established in April 2020 as an interim (temporary) measure to provide income support to those suffering from economic distress due to the pandemic.</li>
+        <li><strong>Pandemic Impact:</strong> Between April 2020 and February 2022, the DGRK provided income support to 54,783 individuals and 15,464 children, reaching approximately 8.4% of the total population.</li>
+        <li><strong>Evolution toward Shock-Responsiveness:</strong> While the core Kidu remains a permanent fixture, it increasingly acts as an ad hoc support mechanism for covariate shocks (natural disasters or economic crises) in the absence of a formal national shock-responsive social protection floor.</li>
+      </ul>
+    </div>
+    <div class="prose-note">
+      Source: UNICEF. 2025. Social Protection Situational Analysis &amp; Landscaping Assessment.
+    </div>
+  </div>
+
+  <div class="tcard">
+    <div class="tcard-head tcard-head-alt">
+      <div><h3>Kidu Recipients by Group</h3></div>
+      
+    </div>
+    <table class="dt">
+      <thead>
+        <tr>
+          <th rowspan="2" style="vertical-align:bottom">Group / Category</th>
+          <th colspan="2" style="text-align:center; border-bottom:1px solid var(--border);">2020</th>
+          <th colspan="2" style="text-align:center; border-bottom:1px solid var(--border);" class="h22">2021</th>
+        </tr>
+        <tr>
+          <th>Share of Group (%)</th>
+          <th>Share of Kidu Recipients (%)</th>
+          <th class="h22">Share of Group (%)</th>
+          <th class="h22">Share of Kidu Recipients (%)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="grp" colspan="5">Overall</td></tr>
+        <tr><td class="sub-lbl">Share of Kidu recipients (%)</td><td class="num">18.0</td><td class="num">—</td><td class="num v22">12.4</td><td class="num v22">—</td></tr>
+        <tr><td class="grp" colspan="5">By Job Type</td></tr>
+        <tr><td class="sub-lbl">Public</td><td class="num">14.8</td><td class="num">13.0</td><td class="num v22">15.6</td><td class="num v22">3.9</td></tr>
+        <tr><td class="sub-lbl">Private</td><td class="num">8.0</td><td class="num">29.2</td><td class="num v22">13.4</td><td class="num v22">18.3</td></tr>
+        <tr><td class="sub-lbl">Laborer</td><td class="num">4.5</td><td class="num">6.9</td><td class="num v22">4.7</td><td class="num v22">7.6</td></tr>
+        <tr><td class="sub-lbl">Self-employed</td><td class="num">22.7</td><td class="num">16.1</td><td class="num v22">15.8</td><td class="num v22">16.2</td></tr>
+        <tr><td class="sub-lbl">Not employed / absent</td><td class="num">52.0</td><td class="num">19.1</td><td class="num v22">50.6</td><td class="num v22">12.7</td></tr>
+        <tr><td class="grp" colspan="5">By Sector</td></tr>
+        <tr><td class="sub-lbl">Agriculture</td><td class="num">16.6</td><td class="num">7.8</td><td class="num v22">11.8</td><td class="num v22">0.5</td></tr>
+        <tr><td class="sub-lbl">Manufacturing</td><td class="num">5.2</td><td class="num">16.9</td><td class="num v22">5.7</td><td class="num v22">11.6</td></tr>
+        <tr><td class="sub-lbl">Services</td><td class="num">26.2</td><td class="num">22.5</td><td class="num v22">31.8</td><td class="num v22">13.2</td></tr>
+        <tr><td class="sub-lbl">Not employed / absent</td><td class="num">52.0</td><td class="num">19.1</td><td class="num v22">50.6</td><td class="num v22">12.7</td></tr>
+        <tr><td class="grp" colspan="5">By Urban / Rural</td></tr>
+        <tr><td class="sub-lbl">Urban</td><td class="num">36.1</td><td class="num">22.7</td><td class="num v22">38.5</td><td class="num v22">15.7</td></tr>
+        <tr><td class="sub-lbl">Rural</td><td class="num">63.9</td><td class="num">15.3</td><td class="num v22">61.5</td><td class="num v22">10.3</td></tr>
+        <tr><td class="grp" colspan="5">By COVID Shock Severity</td></tr>
+        <tr><td class="sub-lbl">Severe COVID shock</td><td class="num">16.4</td><td class="num">28.6</td><td class="num v22">—</td><td class="num v22">—</td></tr>
+        <tr><td class="sub-lbl">Severe shock not identified</td><td class="num">83.6</td><td class="num">15.9</td><td class="num v22">—</td><td class="num v22">—</td></tr>
+      </tbody>
+    </table>
+    <div style="padding:10px 14px; font-size:11px; color:var(--text-muted); border-top:1px solid var(--border); font-family:'DM Mono',monospace;">
+      Notes: "Share of group" = share of individuals in that group in total respondents. "Share of Kidu recipients" = share of individuals who received Kidu within the group. "Severe COVID shock" respondents either stopped working, not seeking a job, or decreased operations because of COVID-19. Source: Authors' calculations. · Source: Bhutan Poverty Assessment
+    </div>
+  </div>
+
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     SUBSIDIES
+═══════════════════════════════════════════════════ -->
+<section class="section" id="subsidies">
+  <div class="section-header">
+    <div>
+      <div class="section-title">Subsidies</div>
+      <div class="section-desc">CEQ 2017: not included. CEQ 2022: electricity, agriculture, and fuel subsidies.</div>
+    </div>
+    <div class="source-links">
+      <a class="source-link" href="#" onclick="alert('Source: Final-_-BPC-Tariff-Review-Report-2022.pdf\nPages 39, 42, 45')">📄 BPC Tariff Review 2022 (PDF)</a>
+      <a class="source-link" href="#" onclick="return false;">📄 Bhutan 2024 Labor Market Assessment Report</a>
+      <a class="source-link" href="#" onclick="return false;">📄 UNICEF 2025 Social Protection Situational Analysis</a>
+      <a class="source-link" href="#" onclick="return false;">📄 IMF 2024 Article IV Consultation</a>
+    </div>
+  </div>
+
+  <div class="info-box">
+    <div class="info-box-label">CEQ 2017</div>
+    <p>Subsidies were <strong>not included</strong> in the CEQ 2017 analysis — noted in original Excel file.</p>
+  </div>
+
+  <!-- SUB-NAV -->
+  <div class="sub-nav">
+    <div class="sub-tab active" onclick="showSubTab('sub-electricity')" data-sub="sub-electricity">Electricity</div>
+    <div class="sub-tab" onclick="showSubTab('sub-agriculture')" data-sub="sub-agriculture">Agriculture</div>
+    <div class="sub-tab" onclick="showSubTab('sub-fuels')" data-sub="sub-fuels">Fuels</div>
+  </div>
+
+  <!-- ── SUB-TAB: ELECTRICITY ── -->
+  <div class="sub-section active" id="sub-electricity">
+
+    <!-- Tariff Structure Table 64 (page 45) -->
+    <div class="tcard">
+      <div class="tcard-head tcard-head-alt">
+        <div><h3>Approved Tariff Structure — Table 64 (BPC, Page 45)</h3></div>
+      </div>
+      <table class="dt">
+        <thead>
+          <tr>
+            <th>Tariff Structure</th>
+            <th>Unit</th>
+            <th>Sep 2022 – Jun 2023</th>
+            <th class="h22">Jul 2023 – Jun 2024</th>
+            <th class="h22">Jul 2024 – Jun 2025</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td class="grp" colspan="5">Low Voltage (LV)</td></tr>
+          <tr><td class="sub-lbl">LV Block I (Rural*) — 0–100 kWh</td><td class="num">Nu./kWh</td><td class="num">0</td><td class="num v22">0</td><td class="num v22">0</td></tr>
+          <tr><td class="sub-lbl">LV Block I (High landers) — 0–200 kWh</td><td class="num">Nu./kWh</td><td class="num">0</td><td class="num v22">0</td><td class="num v22">0</td></tr>
+          <tr><td class="sub-lbl">LV Block I (Others) — 0–100 kWh</td><td class="num">Nu./kWh</td><td class="num">1.28</td><td class="num v22">1.28</td><td class="num v22">1.28</td></tr>
+          <tr><td class="sub-lbl">LV Block II (All) — &gt;100 kWh</td><td class="num">Nu./kWh</td><td class="num">2.66</td><td class="num v22">2.66</td><td class="num v22">2.66</td></tr>
+          <tr><td class="grp" colspan="5">Medium Voltage (MV)</td></tr>
+          <tr><td class="sub-lbl">Energy Charge</td><td class="num">Nu./kWh</td><td class="num">1.60</td><td class="num v22">1.60</td><td class="num v22">1.60</td></tr>
+          <tr><td class="sub-lbl">Demand Charge</td><td class="num">Nu./kVA/Month</td><td class="num">170</td><td class="num v22">170</td><td class="num v22">170</td></tr>
+          <tr><td class="grp" colspan="5">High Voltage (HV)</td></tr>
+          <tr><td class="sub-lbl">Energy Charge</td><td class="num">Nu./kWh</td><td class="num">1.60</td><td class="num v22">1.60</td><td class="num v22">1.60</td></tr>
+          <tr><td class="sub-lbl">Demand Charge</td><td class="num">Nu./kVA/Month</td><td class="num">496</td><td class="num v22">496</td><td class="num v22">496</td></tr>
+          <tr><td class="sub-lbl">Wheeling</td><td class="num">Nu./kWh</td><td class="num">0.23</td><td class="num v22">0.23</td><td class="num v22">0.23</td></tr>
+        </tbody>
+      </table>
+      <div style="padding:10px 14px; font-size:11px; color:var(--text-muted); border-top:1px solid var(--border);">
+        *Rural: Free electricity (0 Nu./kWh) for first 100 kWh/month. High landers: Free electricity for first 200 kWh/month. Nu 2.66/unit recovered from HV consumers; remaining cost covered by BPC network charge for import of energy.
+      </div>
+    </div>
+
+    <!-- Per Unit Subsidy Table 60 (page 42) -->
+    <div class="tcard">
+      <div class="tcard-head tcard-head-alt">
+        <div><h3>Per Unit Subsidy to LV &amp; MV Consumers — Table 60 (BPC, Page 42)</h3></div>
+      </div>
+      <table class="dt">
+        <thead>
+          <tr>
+            <th>Customer Category</th>
+            <th>Sep 2022 – Jun 2023 (Nu.)</th>
+            <th class="h22">Jul 2023 – Jun 2024 (Nu.)</th>
+            <th class="h22">Jul 2024 – Jun 2025 (Nu.)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td class="grp" colspan="4">Low Voltage</td></tr>
+          <tr><td class="sub-lbl">LV Block I (Rural) — 0–100 kWh</td><td class="num">2.66</td><td class="num v22">2.66</td><td class="num v22">2.66</td></tr>
+          <tr><td class="sub-lbl">LV Block I (High landers) — 0–200 kWh</td><td class="num">2.66</td><td class="num v22">2.66</td><td class="num v22">2.66</td></tr>
+          <tr><td class="sub-lbl">LV Block I (Others) — 0–100 kWh</td><td class="num">1.38</td><td class="num v22">1.38</td><td class="num v22">1.38</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Cost of Supply Tables (page 39) -->
+    <div class="grid-2">
+      <div class="tcard">
+        <div class="tcard-head tcard-head-alt">
+          <div><h3>Cost of Supply to HV Consumers — Table 53 (Page 39)</h3></div>
+        </div>
+        <table class="dt">
+          <thead><tr><th>Cost Component</th><th>2022/23</th><th class="h22">2023/24</th><th class="h22">2024/25</th></tr></thead>
+          <tbody>
+            <tr><td>Energy costs*</td><td class="num">5,538</td><td class="num v22">6,864</td><td class="num v22">7,193</td></tr>
+            <tr><td>Network costs</td><td class="num">3,241</td><td class="num v22">3,478</td><td class="num v22">3,687</td></tr>
+            <tr><td>Working capital</td><td class="num">54</td><td class="num v22">56</td><td class="num v22">60</td></tr>
+            <tr><td>Other revenue</td><td class="num">(39)</td><td class="num v22">(47)</td><td class="num v22">(5)</td></tr>
+            <tr><td>SO Charges</td><td class="num">11</td><td class="num v22">29</td><td class="num v22">92</td></tr>
+            <tr class="hl"><td class="lbl">Unsubsidized Cost of Supply</td><td class="num">8,805</td><td class="num22">10,381</td><td class="num22">11,027</td></tr>
+          </tbody>
+        </table>
+        <div style="padding:8px 14px; font-size:11px; color:var(--text-muted); border-top:1px solid var(--border);">*Energy costs include cost of energy purchased from DGPC and MHP at average generation tariff @ Nu 1.60 per Unit.</div>
+      </div>
+
+      <div class="tcard">
+        <div class="tcard-head tcard-head-alt">
+          <div><h3>Cost of Supply to LV Consumers — Table 55 (Page 39)</h3></div>
+        </div>
+        <table class="dt">
+          <thead><tr><th>Cost Component</th><th>2022/23</th><th class="h22">2023/24</th><th class="h22">2024/25</th></tr></thead>
+          <tbody>
+            <tr><td>Energy costs</td><td class="num">1,144</td><td class="num v22">1,195</td><td class="num v22">1,246</td></tr>
+            <tr><td>Network costs</td><td class="num">2,018</td><td class="num v22">2,108</td><td class="num v22">2,309</td></tr>
+            <tr><td>Working capital</td><td class="num">32</td><td class="num v22">33</td><td class="num v22">35</td></tr>
+            <tr><td>Other revenue</td><td class="num">(149)</td><td class="num v22">(149)</td><td class="num v22">(149)</td></tr>
+            <tr class="hl"><td class="lbl">Unsubsidized Cost of Supply</td><td class="num">3,045</td><td class="num22">3,187</td><td class="num22">3,441</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Table 54 MV — from image -->
+    <div class="tcard">
+      <div class="tcard-head tcard-head-alt">
+        <div><h3>Reviewed Domestic Cost of Supply to MV Consumers — Table 54</h3><div class="sub">Nu. in Millions</div></div>
+      </div>
+      <table class="dt">
+        <thead><tr><th>Cost Component</th><th>2022/23</th><th class="h22">2023/24</th><th class="h22">2024/25</th></tr></thead>
+        <tbody>
+          <tr><td>Energy costs</td><td class="num">234</td><td class="num v22">451</td><td class="num v22">610</td></tr>
+          <tr><td>Network costs</td><td class="num">484</td><td class="num v22">511</td><td class="num v22">551</td></tr>
+          <tr><td>Working capital</td><td class="num">8</td><td class="num v22">8</td><td class="num v22">9</td></tr>
+          <tr><td>Other revenue</td><td class="num">(4)</td><td class="num v22">(0)</td><td class="num v22">(0)</td></tr>
+          <tr class="hl"><td class="lbl">Unsubsidized Cost of Supply</td><td class="num">723</td><td class="num22">971</td><td class="num22">1,170</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div><!-- end sub-electricity -->
+
+  <!-- ── SUB-TAB: AGRICULTURE ── -->
+  <div class="sub-section" id="sub-agriculture">
+
+    <div class="tcard">
+      <div class="tcard-head tcard-head-alt">
+        <div><h3>Agricultural and Rural Subsidies</h3></div>
+      </div>
+      <table class="dt">
+        <thead>
+          <tr>
+            <th style="width:260px">Subsidy / Support Programme</th>
+            <th>Description and Transfer Details</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="lbl">Price Support for Bhutan Agro Industries</td>
+            <td>National subsidy spending explicitly includes price support for Bhutan Agro Industries to maintain operations.</td>
+          </tr>
+          <tr>
+            <td class="lbl">Rural Life Insurance Scheme</td>
+            <td>A mandatory permanent scheme where the government provides a <strong>Nu. 108 subsidy</strong> toward the annual Nu. 195 premium, with the individual paying the remaining Nu. 87.</td>
+          </tr>
+          <tr>
+            <td class="lbl">Rural House Insurance Scheme</td>
+            <td>A mandatory programme providing insurance for rural homes against natural disasters (fire, flood, earthquake), which is <strong>partially subsidised</strong> by the state to protect rural assets.</td>
+          </tr>
+          <tr>
+            <td class="lbl">Economic Stimulus Plan (ESP) Subsidies</td>
+            <td>An India-financed plan (amounting to ~5% of GDP) that provides <strong>subsidies, capital grants, and support for equipment acquisition</strong> intended to raise productivity in agriculture and agribusinesses.</td>
+          </tr>
+          <tr>
+            <td class="lbl">Low-Interest Agricultural Loans</td>
+            <td>The Ministry of Agriculture and Livestock (MoAL) facilitates <strong>low-interest loans</strong> specifically for the agriculture and livestock sectors.</td>
+          </tr>
+          <tr>
+            <td class="lbl">Cost-Sharing Mechanism (RNR)</td>
+            <td>An established mechanism for the <strong>Renewable Natural Resource (RNR) sector</strong> to support development and community participation.</td>
+          </tr>
+          <tr>
+            <td class="lbl">Electricity Subsidies</td>
+            <td>Included in national fiscal expenditure (0.27% in FY 2023–24) to support various operations, including those in rural and agricultural areas.</td>
+          </tr>
+          <tr>
+            <td class="lbl">Wage Subsidies (via YELP)</td>
+            <td>While a labour programme, it provides <strong>monthly allowances (Nu. 5,000 to Nu. 9,000)</strong> to private sector employers, including those in the agricultural sector, to hire and train youth.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div><!-- end sub-agriculture -->
+
+  <!-- ── SUB-TAB: FUELS ── -->
+  <div class="sub-section" id="sub-fuels">
+
+    <div class="tcard">
+      <div class="tcard-head tcard-head-alt">
+        <div><h3>Fuel Subsidies — Bhutan</h3></div>
+      </div>
+      <table class="dt">
+        <thead>
+          <tr>
+            <th style="width:200px">Aspect</th>
+            <th>Detail</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="lbl">Fuel source</td>
+            <td>Bhutan imports all its fuel from India.</td>
+          </tr>
+          <tr>
+            <td class="lbl">Before March 2026</td>
+            <td>Bhutan had no fuel subsidy — prices were set based on international prices and actual procurement costs.</td>
+          </tr>
+          <tr>
+            <td class="lbl">March 21, 2026</td>
+            <td>Bhutan introduced the <strong>National Fuel Price Smoothening Framework (NFPSF)</strong> with subsidies: <span class="rp rp10">Nu 16.31/litre — Petrol</span> &nbsp; <span class="rp rp20">Nu 75.82/litre — Diesel</span></td>
+          </tr>
+          <tr>
+            <td class="lbl">India's pricing arrangement</td>
+            <td>Bhutan receives fuel without Indian domestic taxes (zero-rated under GST, exempt from export duties). This is a <strong>tax exemption</strong> under the bilateral trade agreement, not a direct subsidy.</td>
+          </tr>
+          <tr>
+            <td class="lbl">2013 subsidy</td>
+            <td>India previously supplied subsidized LPG/kerosene to Bhutan, but cut that subsidy in 2013 (temporarily).</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div><!-- end sub-fuels -->
+
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     SOCIAL INSURANCE
+═══════════════════════════════════════════════════ -->
+<section class="section" id="social">
+  <div class="section-header">
+    <div>
+      <div class="section-title">Social Insurance</div>
+      <div class="section-desc">Pension and provident funds, life insurance schemes, and rural life insurance. 2017 vs. 2022 comparison.</div>
+    </div>
+    <div class="source-links">
+      <a class="source-link" href="#" onclick="return false;">📄 National Pension and Provident Fund Plan (Amendment of 2010)</a>
+      <a class="source-link" href="#" onclick="return false;">📄 Rules and Regulations of the Kingdom</a>
+      <a class="source-link" href="#" onclick="return false;">📄 Private Fund Scheme of Royal Insurance of Bhutan Limited, Kingdom of Bhutan 2011</a>
+    </div>
+  </div>
+
+  <!-- SUB-NAV -->
+  <div class="sub-nav">
+    <div class="sub-tab active" onclick="showSubTab('si-schemes')" data-sub="si-schemes">Schemes</div>
+    <div class="sub-tab" onclick="showSubTab('si-rates')" data-sub="si-rates">Rates</div>
+  </div>
+
+  <!-- ── SUB-TAB: SCHEMES ── -->
+  <div class="sub-section active" id="si-schemes">
+  <!-- Contribution rates overview -->
+  <div class="tcard">
+    <div class="tcard-head"><div><h3>Social Insurance Schemes — 2017 vs 2022 Overview</h3></div></div>
+    <table class="dt">
+      <thead><tr><th style="width:190px">Scheme</th><th class="h17">CEQ 2017</th><th class="h22">CEQ 2022</th></tr></thead>
+      <tbody>
+        <tr>
+          <td class="lbl">NPPF<br><small style="font-weight:400;color:var(--text-muted)">National Pension &amp; Provident Fund</small></td>
+          <td>Mandatory savings for civil servants, state-owned corporations, armed forces. Civil servants: min. 11% of monthly salary. Armed Forces: 15%. Royal Bhutan Police: 12%. Employer contributes equal amount.</td>
+          <td class="v22">No change since 2010 Amendment. Contribution rates unchanged.</td>
+        </tr>
+        <tr>
+          <td class="lbl">PPF<br><small style="font-weight:400;color:var(--text-muted)">Provident Fund</small></td>
+          <td>Covers private sector and non-government entities. Contribution determined by employment contract; no less than 5% of basic salary.</td>
+          <td class="v22">Changed September 2024. Previous guidelines not found. New guidelines retain same minimum: "no less than 5% of basic salary."</td>
+        </tr>
+        <tr>
+          <td class="lbl">RLI<br><small style="font-weight:400;color:var(--text-muted)">Rural Life Insurance</small></td>
+          <td>Voluntary life insurance for people aged 8+ in rural areas. Annual premium: Nu. 87 per person (2017).</td>
+          <td class="v22">No change since September 2017. New premium Nu. 195 (with subsidy): Nu. 87 employee + Nu. 108 government. <em>Note: Excel flags this rate as "seemed to be temporary until October 31, 2018" — status post-2018 unclear.</em></td>
+        </tr>
+        <tr>
+          <td class="lbl">GIS<br><small style="font-weight:400;color:var(--text-muted)">Group Insurance Scheme</small></td>
+          <td>Compulsory life insurance for salaried workers in public sector.</td>
+          <td class="v22">No change up to 2024.</td>
+        </tr>
+        <tr>
+          <td class="lbl">GSLI<br><small style="font-weight:400;color:var(--text-muted)">Group Saving Linked Insurance</small></td>
+          <td>Compulsory life insurance for all other workers (non-public sector).</td>
+          <td class="v22">New 2022 guidelines issued. Premium table below.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  </div><!-- end si-schemes -->
+
+  <!-- ── SUB-TAB: RATES ── -->
+  <div class="sub-section" id="si-rates">
+  <!-- GIS/GSLI premium tables -->
+  <div class="grid-2">
+    <div class="tcard">
+      <div class="tcard-head"><div><h3>Member grouping, sum assured amount, and subscription rate with effect 1st July 2014</h3></div></div>
+      <table class="dt">
+        <thead><tr><th>Group</th><th>Grade</th><th>Total Sub./month (Nu.)</th><th>Insurance Fund (Nu.)</th><th>Savings Fund (Nu.)</th><th>Coverage (Nu.)</th></tr></thead>
+        <tbody>
+          <tr><td class="num">A</td><td>1–3 (EX/ES Level)</td><td class="num">500</td><td class="num">150</td><td class="num">350</td><td class="num">500,000</td></tr>
+          <tr><td class="num">B</td><td>4–8 (P Level)</td><td class="num">400</td><td class="num">120</td><td class="num">280</td><td class="num">400,000</td></tr>
+          <tr><td class="num">C</td><td>9–13 (S Level)</td><td class="num">300</td><td class="num">90</td><td class="num">210</td><td class="num">300,000</td></tr>
+          <tr><td class="num">D</td><td>14–20 (O Level) + ESP and GSC</td><td class="num">200</td><td class="num">60</td><td class="num">140</td><td class="num">200,000</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="tcard">
+      <div class="tcard-head tcard-head-alt"><div><h3>GSLI Premium Table where the Grades not compatible with Civil Servant</h3></div></div>
+      <table class="dt">
+        <thead><tr><th>Group</th><th>Salary Scale (Nu.)</th><th>Sum Assured (Nu.)</th><th>Insurance Premium (Nu.)</th><th>Savings (Nu.)</th><th class="h22">Monthly Sub. (Nu.)</th></tr></thead>
+        <tbody>
+          <tr><td class="num">A</td><td>60,000 &amp; above</td><td class="num">5,00,000</td><td class="num">150</td><td class="num">350</td><td class="num v22">500</td></tr>
+          <tr><td class="num">B</td><td>30,000 – 59,999</td><td class="num">4,00,000</td><td class="num">120</td><td class="num">280</td><td class="num v22">400</td></tr>
+          <tr><td class="num">C</td><td>16,000 – 29,999</td><td class="num">3,00,000</td><td class="num">90</td><td class="num">210</td><td class="num v22">300</td></tr>
+          <tr><td class="num">D</td><td>15,999 and below</td><td class="num">2,00,000</td><td class="num">60</td><td class="num">140</td><td class="num v22">200</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  </div><!-- end si-rates -->
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     GOVERNMENT EXPENDITURE
+═══════════════════════════════════════════════════ -->
+<section class="section" id="govexp">
+  <div class="section-header">
+    <div>
+      <div class="section-title">Government Expenditure</div>
+      <div class="section-desc">Expenditure by sector/function. CEQ 2017: Table 2 from Annual Financial Statements (FY2016-17). CEQ 2022: Table 11(b) from DTA (FY2021-22 and FY2022-23).</div>
+    </div>
+    <div class="source-links">
+      <a class="source-link" href="https://www.mof.gov.bt" target="_blank">🏛️ Ministry of Finance Bhutan</a>
+    </div>
+  </div>
+
+  <div class="tcard">
+    <div class="tcard-head"><div><h3>Government Expenditure by Sector — Table 2 (FY2016-17)</h3></div></div>
+    <table class="dt">
+      <thead><tr><th>Sector</th><th>Amount (Nu. Million)</th><th>% of Total</th></tr></thead>
+      <tbody>
+        <tr class="hl"><td class="lbl">Social Services</td><td class="num">15,087.73</td><td class="num">28.6%</td></tr>
+        <tr><td class="sub-lbl">Health Services</td><td class="num">4,359.02</td><td class="num">8.3%</td></tr>
+        <tr><td class="sub-lbl">Education Services</td><td class="num">10,728.71</td><td class="num">20.4%</td></tr>
+        <tr class="hl"><td class="lbl">Economic Services</td><td class="num">15,058.83</td><td class="num">28.6%</td></tr>
+        <tr><td class="sub-lbl">RNR Services</td><td class="num">6,764.55</td><td class="num">12.8%</td></tr>
+        <tr><td class="sub-lbl">Mining, Manufacturing &amp; Industries Services</td><td class="num">142.833</td><td class="num">0.3%</td></tr>
+        <tr><td class="sub-lbl">Transport &amp; Communication Services</td><td class="num">6,288.99</td><td class="num">11.9%</td></tr>
+        <tr><td class="sub-lbl">Energy Services</td><td class="num">905.498</td><td class="num">1.7%</td></tr>
+        <tr><td class="sub-lbl">Other Economic Services</td><td class="num">956.963</td><td class="num">1.8%</td></tr>
+        <tr class="hl"><td class="lbl">Housing &amp; Public Amenities Services</td><td class="num">2,109.68</td><td class="num">4.0%</td></tr>
+        <tr class="hl"><td class="lbl">General Public Services</td><td class="num">15,219.90</td><td class="num">28.9%</td></tr>
+        <tr><td class="sub-lbl">General Public Services</td><td class="num">10,475.73</td><td class="num">19.9%</td></tr>
+        <tr><td class="sub-lbl">Public Debt Services</td><td class="num">4,744.17</td><td class="num">9.0%</td></tr>
+        <tr class="hl"><td class="lbl">Religion &amp; Cultural Services</td><td class="num">2,578.06</td><td class="num">4.9%</td></tr>
+        <tr class="hl"><td class="lbl">Public Order &amp; Safety Services</td><td class="num">2,657.87</td><td class="num">5.0%</td></tr>
+        <tr style="background:var(--gold-soft)"><td class="lbl">Total</td><td class="num"><strong>52,712.06</strong></td><td class="num"><strong>100%</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="tcard">
+    <div class="tcard-head tcard-head-alt"><div><h3>Current Expenditure by Function — Table 11(b) (FY2021-22 &amp; FY2022-23)</h3></div></div>
+    <table class="dt">
+      <thead><tr><th>Description of Expenditure</th><th>FY2021-22</th><th class="h22">FY2022-23</th><th class="h22">% Change</th></tr></thead>
+      <tbody>
+        <tr class="hl"><td class="lbl">Social Services</td><td class="num">10,914.120</td><td class="num22">14,720.210</td><td class="num22">+34.87%</td></tr>
+        <tr><td class="sub-lbl">Education Services</td><td class="num">6,690.850</td><td class="num v22">9,594.451</td><td class="num v22">+43.40%</td></tr>
+        <tr><td class="sub-lbl">Health Services</td><td class="num">4,223.270</td><td class="num v22">5,125.759</td><td class="num v22">+21.37%</td></tr>
+        <tr class="hl"><td class="lbl">Economic Services</td><td class="num">3,312.262</td><td class="num22">3,681.872</td><td class="num22">+11.16%</td></tr>
+        <tr><td class="sub-lbl">Energy Services</td><td class="num">107.265</td><td class="num v22">109.120</td><td class="num v22">+1.73%</td></tr>
+        <tr><td class="sub-lbl">RNR Services</td><td class="num">2,016.059</td><td class="num v22">2,289.025</td><td class="num v22">+13.54%</td></tr>
+        <tr><td class="sub-lbl">Mining, Manuftg &amp; Industries Services</td><td class="num">86.493</td><td class="num v22">86.761</td><td class="num v22">+0.31%</td></tr>
+        <tr><td class="sub-lbl">Transport and Communication Services</td><td class="num">829.510</td><td class="num v22">940.586</td><td class="num v22">+13.39%</td></tr>
+        <tr><td class="sub-lbl">Other Economic Services</td><td class="num">272.935</td><td class="num v22">256.380</td><td class="num v22">−6.07%</td></tr>
+        <tr class="hl"><td class="lbl">Housing and Public Amenity Services</td><td class="num">347.005</td><td class="num22">473.247</td><td class="num22">+36.38%</td></tr>
+        <tr class="hl"><td class="lbl">General Public Services</td><td class="num">16,169.020</td><td class="num22">12,772.898</td><td class="num22">−21.00%</td></tr>
+        <tr><td class="sub-lbl">General Public Services</td><td class="num">13,180.330</td><td class="num v22">8,736.382</td><td class="num v22">−33.72%</td></tr>
+        <tr><td class="sub-lbl">Public Debt Services</td><td class="num">2,988.690</td><td class="num v22">4,036.516</td><td class="num v22">+35.06%</td></tr>
+        <tr class="hl"><td class="lbl">Religion &amp; Culture Services</td><td class="num">781.830</td><td class="num22">835.791</td><td class="num22">+6.90%</td></tr>
+        <tr class="hl"><td class="lbl">Public Order and Safety Services</td><td class="num">2,920.480</td><td class="num22">2,944.000</td><td class="num22">+0.81%</td></tr>
+        <tr style="background:var(--gold-soft)"><td class="lbl">Total</td><td class="num"><strong>34,444.717</strong></td><td class="num"><strong>35,428.018</strong></td><td class="num v22"><strong>+2.85%</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     EDUCATION
+═══════════════════════════════════════════════════ -->
+<section class="section" id="education">
+  <div class="section-header">
+    <div>
+      <div class="section-title">Education Spending</div>
+      <div class="section-desc">CEQ 2017 narrative and CEQ 2022 budget and socio-economic indicators.</div>
+    </div>
+    <div class="source-links">
+      <a class="source-link" href="#" onclick="return false;">📄 2017: Bhutan CEQ 2017</a>
+      <a class="source-link" href="#" onclick="return false;">📄 2022: Annual Education Statistics 2022 · Ministry of Education, Bhutan</a>
+    </div>
+  </div>
+
+  <!-- CEQ 2017 narrative card -->
+  <div class="tcard">
+    <div class="tcard-head">
+      <div><h3>Education Spending — CEQ 2017</h3></div>
+      
+    </div>
+    <div class="prose-block">
+      <p>The education system in Bhutan consists of general education, monastic education and non-formal education. The CEQ analysis only considers general education as it represents the formal education system and accounts for an overwhelming majority of government education spending. General education spans all stages of education from early childhood care education to tertiary/technical/vocational education. Most schools in Bhutan are public and provide everything free of charge, from textbooks to boarding facilities. In FY2016-2017, 5.9 percent of GDP was spent on education (0.9 percent of GDP on tertiary education).<sup>10</sup> While public education is provided for free, students are encouraged to share a small portion of cost based on their financial ability.</p>
+    </div>
+    <div style="padding:12px 20px; font-size:11.5px; line-height:1.65; color:var(--text-secondary); border-top:1px solid var(--border); background:var(--surface-2);">
+      <sup>10</sup> For example, students in primary schools are required to pay Nu. 30 per annum, students in secondary schools pay Nu. 100–200 per annum, and students living in urban areas arrange their own stationery. According to the Bhutan Living Standards Survey 2017, the average out-of-pocket spending is Nu. 5,259 at the primary level, Nu. 5,708 at the middle secondary level and Nu. 23,879 at the higher secondary level. There are significant disparities in out-of-pocket spending between urban and rural areas.
+    </div>
+    <div class="prose-note">
+      Source: Bhutan CEQ 2017
+    </div>
+  </div>
+
+  <!-- CEQ 2022 title -->
+  <div class="tcard">
+    <div class="tcard-head tcard-head-alt">
+      <div><h3>Education Spending — CEQ 2022</h3></div>
+      
+    </div>
+  </div>
+
+  <!-- Socioeconomic indicators from AES 2022 -->
+  <div class="tcard">
+    <div class="tcard-head tcard-head-alt"><div><h3>Socio-Economic Indicators — Annual Education Statistics 2022 (Table E)</h3></div></div>
+    <table class="dt">
+      <thead><tr><th>Indicator</th><th class="h22">Value</th><th>Data Year</th></tr></thead>
+      <tbody>
+        <tr><td class="lbl">National Literacy Rate (6 yrs+)</td><td class="num v22">71.4%</td><td class="num">2017</td></tr>
+        <tr><td class="sub-lbl">General Literacy Rate (Male)</td><td class="num v22">78.1%</td><td class="num">2017</td></tr>
+        <tr><td class="sub-lbl">General Literacy Rate (Female)</td><td class="num v22">63.9%</td><td class="num">2017</td></tr>
+        <tr><td class="lbl">Adult Literacy Rate (15 yrs+)</td><td class="num v22">66.6%</td><td class="num">2017</td></tr>
+        <tr><td class="sub-lbl">Adult Literacy Rate (Male)</td><td class="num v22">75.0%</td><td class="num">2017</td></tr>
+        <tr><td class="sub-lbl">Adult Literacy Rate (Female)</td><td class="num v22">57.1%</td><td class="num">2017</td></tr>
+        <tr><td class="lbl">Youth Literacy Rate (15–24 yrs)</td><td class="num v22">93.3%</td><td class="num">2017</td></tr>
+        <tr><td class="sub-lbl">Youth Literacy Rate (Male)</td><td class="num v22">93.1%</td><td class="num">2017</td></tr>
+        <tr><td class="sub-lbl">Youth Literacy Rate (Female)</td><td class="num v22">93.0%</td><td class="num">2017</td></tr>
+        <tr><td class="lbl">Life Expectancy at Birth</td><td class="num v22">72.2 Yrs.</td><td class="num">2021</td></tr>
+        <tr><td class="lbl">Children &lt;5 yrs stunted</td><td class="num v22">21.2%</td><td class="num">2015</td></tr>
+        <tr><td class="lbl">Children &lt;5 yrs wasting</td><td class="num v22">4.3%</td><td class="num">2015</td></tr>
+        <tr><td class="lbl">Under-5 Mortality Rate</td><td class="num v22">28.5</td><td class="num">2019</td></tr>
+        <tr style="background:var(--accent-2-soft)"><td class="lbl">Education exp. as % of govt. expenditure</td><td class="num v22"><strong>14.30%</strong></td><td class="num">FY2021/22</td></tr>
+        <tr style="background:var(--accent-2-soft)"><td class="lbl">Education exp. as % of GDP</td><td class="num v22"><strong>5.55%</strong></td><td class="num">FY2021/22</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Chapter 12 narrative before budget table -->
+  <div class="tcard">
+    <div class="tcard-head tcard-head-alt">
+      <div><h3>Chapter 12: Budget and Expenditure — CEQ 2022</h3></div>
+      
+    </div>
+    <div class="prose-block">
+      <p>The Bhutanese education system is built upon the concept of free services from primary to tertiary level. Students are not only given free tuition but also provided with textbooks, sports-items and learning materials as well as stationery and boarding facilities and food based on need. At the same time, cost-sharing is also encouraged amongst those populations that are in a position to contribute to their children's education. Accordingly, students studying in the urban areas arrange their own stationery.</p>
+      <p style="margin-top:12px;">In general, all students are required to contribute to the School Development Fund at the following rates:</p>
+      <ul style="margin-top:8px; margin-left:24px; line-height:2;">
+        <li>Primary Schools (PP-VI): Nu 30/- per student per annum</li>
+        <li>Lower Secondary Schools (VII-VIII): Nu 100/- per student per annum</li>
+        <li>Middle and Higher Secondary Schools (IX-XII): Nu 200/- per student per annum</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Ministry of Education budget table -->
+  <div class="tcard">
+    <div class="tcard-head tcard-head-alt"><div><h3>Annual Budget &amp; Expenditure by Department — Table 12.2 (FY2021-22)</h3></div></div>
+    <table class="dt">
+      <thead>
+        <tr>
+          <th rowspan="2" style="vertical-align:bottom">Department</th>
+          <th colspan="3" style="text-align:center; border-bottom:1px solid var(--border);">Budget</th>
+          <th colspan="3" style="text-align:center; border-bottom:1px solid var(--border);" class="h22">Expenditure</th>
+        </tr>
+        <tr>
+          <th>Current</th><th>Capital</th><th>Total</th>
+          <th class="h22">Current</th><th class="h22">Capital</th><th class="h22">Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="lbl">Secretariat</td><td class="num">52.241</td><td class="num">62.024</td><td class="num">114.265</td><td class="num v22">50.772</td><td class="num v22">48.018</td><td class="num v22">98.791</td></tr>
+        <tr><td class="lbl">Dept. of Adult and Higher Education</td><td class="num">20.910</td><td class="num">321.304</td><td class="num">342.214</td><td class="num v22">19.923</td><td class="num v22">305.605</td><td class="num v22">325.528</td></tr>
+        <tr><td class="lbl">Dept. of School Education</td><td class="num">742.287</td><td class="num">1,762.543</td><td class="num">2,504.83</td><td class="num v22">488.225</td><td class="num v22">1,273.062</td><td class="num v22">1,761.287</td></tr>
+        <tr><td class="lbl">Dept. of Youth and Sports</td><td class="num">34.265</td><td class="num">29.986</td><td class="num">64.251</td><td class="num v22">31.818</td><td class="num v22">24.825</td><td class="num v22">56.643</td></tr>
+        <tr><td class="lbl">Dept. of School Curriculum and Professional Dev.</td><td class="num">35.996</td><td class="num">53.264</td><td class="num">89.26</td><td class="num v22">35.318</td><td class="num v22">37.410</td><td class="num v22">72.728</td></tr>
+        <tr style="background:var(--gold-soft)"><td class="lbl">Total</td><td class="num"><strong>885.699</strong></td><td class="num"><strong>2,229.121</strong></td><td class="num"><strong>3,114.82</strong></td><td class="num v22"><strong>626.057</strong></td><td class="num v22"><strong>1,688.921</strong></td><td class="num v22"><strong>2,314.979</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     HEALTH
+═══════════════════════════════════════════════════ -->
+<section class="section" id="health">
+  <div class="section-header">
+    <div>
+      <div class="section-title">Health Expenditure</div>
+      <div class="section-desc">2017: Bhutan CEQ 2017 — Article 9, Section 21 of the Constitution of the Kingdom of Bhutan; Ministry of Health; National Health Accounts Report, Bhutan, Fiscal Years 2014-15 &amp; 2015-16. &nbsp;|&nbsp; 2022: National Health Accounts data.</div>
+    </div>
+    <div class="source-links">
+      <a class="source-link" href="#" onclick="return false;">📄 2017: Bhutan CEQ 2017 / National Health Accounts 2014-15 &amp; 2015-16</a>
+      <a class="source-link" href="#" onclick="return false;">📄 2022: National Health Accounts data</a>
+    </div>
+  </div>
+
+  <!-- CEQ 2017 narrative card -->
+  <div class="tcard">
+    <div class="tcard-head">
+      <div><h3>Health Spending — 2017</h3></div>
+      
+    </div>
+    <div class="prose-block">
+      <p>Health care in Bhutan is almost entirely funded and delivered by the Royal Government of Bhutan (RGoB) health institutions. Large investments in health care helped greatly to improve access and utilization in the past. Private health care services are limited to a few pharmacies and selective diagnostic centers, mostly in urban areas. Bhutanese can access public health services free of charge with only a few exceptions.<sup>11</sup> Some services not covered include private cabin facility at government hospitals, cosmetic dental care, and drugs outside the national essential drug list. Specialized health services which are not available in the country are referred to hospitals in India at the cost of the government. In FY2015-16, the total health expenditure incurred by the government was around 3 percent of GDP.<sup>12</sup></p>
+    </div>
+    <div class="prose-note">
+      Source: Bhutan CEQ 2017
+    </div>
+  </div>
+
+  <!-- CEQ 2022 title -->
+  <div class="tcard">
+    <div class="tcard-head tcard-head-alt">
+      <div><h3>Health Spending — 2022</h3></div>
+      
+    </div>
+  </div>
+  <div class="tcard">
+    <div class="tcard-head tcard-head-alt"><div><h3>Health Expenditure &amp; GDP — Table 2 (FY2018/19 &amp; FY2019/20)</h3></div></div>
+    <table class="dt">
+      <thead><tr><th>Indicator</th><th>FY 2018/19</th><th class="h22">FY 2019/20</th></tr></thead>
+      <tbody>
+        <tr><td class="lbl">GDP (Nu.)</td><td class="num">178,201,890,000</td><td class="num v22">192,309,624,722</td></tr>
+        <tr><td class="lbl">CHE (Nu.)</td><td class="num">6,233,340,873</td><td class="num v22">7,656,293,990</td></tr>
+        <tr><td class="lbl">CHE RGoB (Nu.)</td><td class="num">4,803,742,128</td><td class="num v22">6,136,965,439</td></tr>
+        <tr><td class="lbl">CF — Capital Finance (Nu.)</td><td class="num">978,605,495</td><td class="num v22">1,048,422,566</td></tr>
+        <tr><td class="lbl">Total (CHE + CF)</td><td class="num">7,211,946,368</td><td class="num v22">8,704,716,556</td></tr>
+        <tr style="background:var(--accent-2-soft)"><td class="lbl">CHE as % of GDP</td><td class="num"><strong>3.5%</strong></td><td class="num v22"><strong>4.0%</strong></td></tr>
+        <tr style="background:var(--accent-2-soft)"><td class="lbl">CHE RGoB as % of GDP</td><td class="num"><strong>2.7%</strong></td><td class="num v22"><strong>3.2%</strong></td></tr>
+        <tr style="background:var(--accent-2-soft)"><td class="lbl">Total (CHE + CF) as % of GDP</td><td class="num"><strong>4.0%</strong></td><td class="num v22"><strong>4.5%</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     TAX REVENUE
+═══════════════════════════════════════════════════ -->
+<section class="section" id="taxrev">
+  <div class="section-header">
+    <div>
+      <div class="section-title">Tax Revenue</div>
+      <div class="section-desc">General government revenue for CEQ 2017 (FY2016-17) and CEQ 2022 (FY2021-22 &amp; FY2022-23).</div>
+    </div>
+    <div class="source-links">
+      <a class="source-link" href="#" onclick="return false;">📄 2017: Bhutan CEQ 2017</a>
+      <a class="source-link" href="#" onclick="return false;">📄 2022: Annual Financial Statements RGoB, Year Ended 30 June 2023</a>
+    </div>
+  </div>
+
+  <!-- SUB-NAV -->
+  <div class="sub-nav">
+    <div class="sub-tab active" onclick="showSubTab('tr-2017')" data-sub="tr-2017">CEQ 2017</div>
+    <div class="sub-tab" onclick="showSubTab('tr-2022')" data-sub="tr-2022">CEQ 2022</div>
+    <div class="sub-tab" onclick="showSubTab('tr-comparison')" data-sub="tr-comparison">2017 vs. 2022 Comparison</div>
+  </div>
+
+  <!-- ── SUB-TAB: 2017 ── -->
+  <div class="sub-section active" id="tr-2017">
+  <!-- CEQ 2017 Table 1 -->
+  <div class="tcard">
+    <div class="tcard-head">
+      <div><h3>Table 1. General Government Revenue — CEQ 2017 (FY2016-17)</h3></div>
+      
+    </div>
+    <table class="dt">
+      <thead>
+        <tr>
+          <th>Revenue 2016-17</th>
+          <th>Amount (Nu. Million)</th>
+          <th>% Total Revenue</th>
+          <th>Amount BLSS (Nu. Million)</th>
+          <th>Total amount BLSS / national accounts</th>
+          <th>Total amount national accounts / national accounts private consumption</th>
+          <th>Total amount BLSS / BLSS private consumption</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="hl"><td class="lbl">Tax Revenue</td><td class="num">21,564.465</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td></tr>
+        <tr class="hl"><td class="sub-lbl" style="padding-left:14px;font-weight:600">Direct Tax</td><td class="num">12,345.794</td><td class="num">57.25%</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td></tr>
+        <tr><td class="sub-lbl">Corporate Income Tax</td><td class="num">8,170.299</td><td class="num">37.89%</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td></tr>
+        <tr><td class="sub-lbl">Business Income Tax</td><td class="num">1,276.903</td><td class="num">5.92%</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td></tr>
+        <tr><td class="sub-lbl">Personal Income Tax</td><td class="num">957.313</td><td class="num">4.44%</td><td class="num">1,332.3</td><td class="num">139.17%</td><td class="num">1.10%</td><td class="num">2.40%</td></tr>
+        <tr><td class="sub-lbl">Other Direct Tax</td><td class="num">39.342</td><td class="num">0.18%</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td></tr>
+        <tr><td class="sub-lbl">Royalties</td><td class="num">1,901.937</td><td class="num">8.82%</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td></tr>
+        <tr class="hl"><td class="sub-lbl" style="padding-left:14px;font-weight:600">Indirect Tax</td><td class="num">9,218.67</td><td class="num">42.75%</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td></tr>
+        <tr><td class="sub-lbl">Bhutan Sales Tax</td><td class="num">3,800.12</td><td class="num">17.62%</td><td class="num">2,677</td><td class="num">70.45%</td><td class="num">4.37%</td><td class="num">4.80%</td></tr>
+        <tr><td class="sub-lbl">Excise Duty</td><td class="num">3,579.663</td><td class="num">16.60%</td><td class="num">253.2</td><td class="num">7.07%</td><td class="num">4.12%</td><td class="num">0.50%</td></tr>
+        <tr><td class="sub-lbl">Import Duty</td><td class="num">562.563</td><td class="num">2.61%</td><td class="num">1,265.3</td><td class="num">224.92%</td><td class="num">0.65%</td><td class="num">2.30%</td></tr>
+        <tr><td class="sub-lbl">Other Indirect Tax</td><td class="num">366.673</td><td class="num">1.70%</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td></tr>
+        <tr><td class="sub-lbl">Green Tax</td><td class="num">909.652</td><td class="num">4.22%</td><td class="num">774</td><td class="num">85.09%</td><td class="num">1.05%</td><td class="num">1.40%</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  </div><!-- end tr-2017 -->
+
+  <!-- ── SUB-TAB: 2022 ── -->
+  <div class="sub-section" id="tr-2022">
+  <!-- CEQ 2022 Table 5 -->
+  <div class="tcard">
+    <div class="tcard-head tcard-head-alt">
+      <div><h3>Table 5. Summary of Domestic Revenue Receipts — CEQ 2022 (FY2021-22 &amp; FY2022-23)</h3></div>
+      
+    </div>
+    <table class="dt">
+      <thead>
+        <tr>
+          <th>Code</th>
+          <th>Source of Revenue</th>
+          <th>2022-2023</th>
+          <th class="h22">2021-2022</th>
+          <th class="h22">% Change</th>
+          <th class="h22">% of GDP</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="hl"><td></td><td class="lbl">Revenue</td><td class="num">44,874.885</td><td class="num v22">39,043.073</td><td class="num v22">14.94%</td><td class="num v22">18.93%</td></tr>
+        <tr class="hl"><td>A</td><td class="lbl">Taxes</td><td class="num">31,466.676</td><td class="num v22">25,843.052</td><td class="num v22">21.76%</td><td class="num v22">13.27%</td></tr>
+        <tr class="hl"><td>1</td><td class="lbl">Taxes on Income, Profits and Capital Gains</td><td class="num">14,644.602</td><td class="num v22">13,325.760</td><td class="num v22">9.90%</td><td class="num v22">6.18%</td></tr>
+        <tr><td>1.1</td><td class="sub-lbl">Corporate Income Tax</td><td class="num">10,487.876</td><td class="num v22">10,063.607</td><td class="num v22">4.22%</td><td class="num v22">4.42%</td></tr>
+        <tr><td>1.2</td><td class="sub-lbl">Business Income Tax</td><td class="num">1,712.977</td><td class="num v22">1,298.427</td><td class="num v22">31.93%</td><td class="num v22">0.72%</td></tr>
+        <tr><td>1.3</td><td class="sub-lbl">Personal Income Tax</td><td class="num">2,443.749</td><td class="num v22">1,963.727</td><td class="num v22">24.44%</td><td class="num v22">1.03%</td></tr>
+        <tr class="hl"><td>2</td><td class="lbl">Taxes on Property</td><td class="num">162.980</td><td class="num v22">144.625</td><td class="num v22">12.69%</td><td class="num v22">0.07%</td></tr>
+        <tr><td>2.1</td><td class="sub-lbl">Recurrent Taxes on immovable property (Dzongkhag Municipality)</td><td class="num">4.922</td><td class="num v22">8.986</td><td class="num v22">-45.23%</td><td class="num v22">0.00%</td></tr>
+        <tr><td>2.2</td><td class="sub-lbl">Taxes on Capital Transactions</td><td class="num">158.058</td><td class="num v22">135.638</td><td class="num v22">16.53%</td><td class="num v22">0.07%</td></tr>
+        <tr class="hl"><td>3</td><td class="lbl">Taxes on Goods and Services</td><td class="num">9,162.344</td><td class="num v22">7,452.002</td><td class="num v22">22.95%</td><td class="num v22">3.87%</td></tr>
+        <tr><td>3.1</td><td class="sub-lbl">Sales Tax</td><td class="num">7,154.806</td><td class="num v22">5,608.668</td><td class="num v22">27.57%</td><td class="num v22">3.02%</td></tr>
+        <tr><td>3.2</td><td class="sub-lbl">Excise</td><td class="num">574.821</td><td class="num v22">386.229</td><td class="num v22">48.83%</td><td class="num v22">0.24%</td></tr>
+        <tr><td>3.3</td><td class="sub-lbl">Green Tax</td><td class="num">906.781</td><td class="num v22">992.864</td><td class="num v22">-8.67%</td><td class="num v22">0.38%</td></tr>
+        <tr><td>3.4</td><td class="sub-lbl">Taxes on permission to use goods or perform activities</td><td class="num">525.936</td><td class="num v22">464.240</td><td class="num v22">13.29%</td><td class="num v22">0.22%</td></tr>
+        <tr class="hl"><td>4</td><td class="lbl">Taxes on International Trade and Transactions</td><td class="num">787.377</td><td class="num v22">509.978</td><td class="num v22">54.39%</td><td class="num v22">0.33%</td></tr>
+        <tr><td>4.1</td><td class="sub-lbl">Customs and Other Import Duties</td><td class="num">787.377</td><td class="num v22">509.978</td><td class="num v22">54.39%</td><td class="num v22">0.33%</td></tr>
+        <tr class="hl"><td>5</td><td class="lbl">Other Taxes</td><td class="num">6,709.373</td><td class="num v22">4,410.687</td><td class="num v22">52.12%</td><td class="num v22">2.83%</td></tr>
+        <tr><td>5.1</td><td class="sub-lbl">Payable solely by business</td><td class="num">79.602</td><td class="num v22">23.890</td><td class="num v22">233.20%</td><td class="num v22">0.03%</td></tr>
+        <tr><td>5.2</td><td class="sub-lbl">Royalty**</td><td class="num">6,629.771</td><td class="num v22">4,386.797</td><td class="num v22">51.13%</td><td class="num v22">2.80%</td></tr>
+        <tr class="hl"><td>B</td><td class="lbl">Other Revenue</td><td class="num">11,474.515</td><td class="num v22">11,544.267</td><td class="num v22">-0.60%</td><td class="num v22">4.84%</td></tr>
+        <tr class="hl"><td>1</td><td class="lbl">Property Income</td><td class="num">11,485.886</td><td class="num v22">11,555.825</td><td class="num v22">-0.61%</td><td class="num v22">4.85%</td></tr>
+        <tr><td>1.1</td><td class="sub-lbl">Interest receipt from corporations</td><td class="num">2,528.968</td><td class="num v22">2,562.471</td><td class="num v22">-1.31%</td><td class="num v22">1.07%</td></tr>
+        <tr><td>1.2</td><td class="sub-lbl">Dividend</td><td class="num">3,529.000</td><td class="num v22">4,081.258</td><td class="num v22">-13.53%</td><td class="num v22">1.49%</td></tr>
+        <tr><td>1.3</td><td class="sub-lbl">Withdrawals from income of quasi-corporations</td><td class="num">5,274.944</td><td class="num v22">4,843.437</td><td class="num v22">8.91%</td><td class="num v22">2.23%</td></tr>
+        <tr><td>1.4</td><td class="sub-lbl">Miscellaneous Rent</td><td class="num">152.974</td><td class="num v22">68.660</td><td class="num v22">122.80%</td><td class="num v22">0.06%</td></tr>
+        <tr class="hl"><td>2</td><td class="lbl">Social Contributions</td><td class="num">-11.371</td><td class="num v22">-11.558</td><td class="num v22">-1.62%</td><td class="num v22">0.00%</td></tr>
+        <tr><td>2.1</td><td class="sub-lbl">Health Contribution</td><td class="num">-11.371</td><td class="num v22">-11.558</td><td class="num v22">-1.62%</td><td class="num v22">0.00%</td></tr>
+        <tr class="hl"><td>C</td><td class="lbl">Current Revenue from Government Agencies</td><td class="num">1,507.174</td><td class="num v22">1,233.823</td><td class="num v22">22.15%</td><td class="num v22">0.64%</td></tr>
+        <tr class="hl"><td>1</td><td class="lbl">Administrative Fees &amp; Charges</td><td class="num">1,063.818</td><td class="num v22">834.439</td><td class="num v22">27.49%</td><td class="num v22">0.45%</td></tr>
+        <tr><td>1.1</td><td class="sub-lbl">Economic Services</td><td class="num">599.673</td><td class="num v22">563.411</td><td class="num v22">6.44%</td><td class="num v22">0.25%</td></tr>
+        <tr><td>1.2</td><td class="sub-lbl">Social Services</td><td class="num">138.291</td><td class="num v22">136.872</td><td class="num v22">1.04%</td><td class="num v22">0.06%</td></tr>
+        <tr><td>1.3</td><td class="sub-lbl">General Services</td><td class="num">325.854</td><td class="num v22">134.156</td><td class="num v22">142.89%</td><td class="num v22">0.14%</td></tr>
+        <tr class="hl"><td>2</td><td class="lbl">Sale of Goods and Commodities</td><td class="num">443.357</td><td class="num v22">399.385</td><td class="num v22">11.01%</td><td class="num v22">0.19%</td></tr>
+        <tr><td>2.1</td><td class="sub-lbl">Economic Services</td><td class="num">45.684</td><td class="num v22">50.438</td><td class="num v22">-9.43%</td><td class="num v22">0.02%</td></tr>
+        <tr><td>2.2</td><td class="sub-lbl">General Services</td><td class="num">0.631</td><td class="num v22">0.588</td><td class="num v22">7.31%</td><td class="num v22">0.00%</td></tr>
+        <tr><td>2.3</td><td class="sub-lbl">Miscellaneous Revenue</td><td class="num">397.042</td><td class="num v22">348.358</td><td class="num v22">13.98%</td><td class="num v22">0.17%</td></tr>
+        <tr class="hl"><td>D</td><td class="lbl">Capital Revenue from Government Agencies</td><td class="num">426.520</td><td class="num v22">421.931</td><td class="num v22">1.09%</td><td class="num v22">0.18%</td></tr>
+        <tr class="hl"><td>1</td><td class="lbl">Capital Receipts</td><td class="num">426.520</td><td class="num v22">421.931</td><td class="num v22">1.09%</td><td class="num v22">0.18%</td></tr>
+        <tr><td>1.1</td><td class="sub-lbl">Economic Services</td><td class="num">426.520</td><td class="num v22">421.931</td><td class="num v22">1.09%</td><td class="num v22">0.18%</td></tr>
+        <tr><td></td><td class="sub-lbl">GDP (Source-MFCC) — 4th quarter update</td><td class="num">237,052.670</td><td class="num v22">—</td><td class="num v22">—</td><td class="num v22">—</td></tr>
+      </tbody>
+    </table>
+    <div style="padding:10px 14px; font-size:11px; color:var(--text-muted); border-top:1px solid var(--border); font-family:'DM Mono',monospace; line-height:1.6;">
+      **After the opening of international borders on September 23, 2022, the Department of Immigration collected a total of Nu. 1,171.496 million in Sustainable Development Fee (SDF) and visa fees, of which Nu. 1,103.523 million was from US Dollar-paying tourists and Nu. 67.972 million from INR-paying tourists. The total number of tourists who paid in US dollars was 10,802 individuals. Assuming that all dollar-paying tourists paid visa fees at the rate of US$ 65 per person, the total visa fee collected from tourists was Nu. 57.357 million, while the remaining Nu. 1,046.166 million was considered SDF.<br><br>
+      Source: Annual Financial Statements of the Royal Government of Bhutan for the Year Ended 30th June 2023.
+    </div>
+  </div>
+  </div><!-- end tr-2022 -->
+
+  <!-- ── SUB-TAB: COMPARISON ── -->
+  <div class="sub-section" id="tr-comparison">
+    <div class="tcard">
+      <div class="tcard-head">
+        <div><h3>Tax Revenue — 2017 vs. 2022 Comparison</h3></div>
+      </div>
+      <table class="dt">
+        <thead>
+          <tr>
+            <th>Revenue Category</th>
+            <th class="h17">2017 — Amount (Nu. M)</th>
+            <th class="h17">2017 — % Total</th>
+            <th class="h22">2022 — Amount (Nu. M)</th>
+            <th class="h22">2022 — % of GDP</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="hl"><td class="lbl">Total Revenue</td><td class="num">21,564.465</td><td class="num">—</td><td class="num v22">39,043.073</td><td class="num v22">18.93%</td></tr>
+          <tr class="hl"><td class="lbl">Total Taxes</td><td class="num">21,564.465</td><td class="num">—</td><td class="num v22">25,843.052</td><td class="num v22">13.27%</td></tr>
+          <tr class="hl"><td class="sub-lbl" style="padding-left:14px;font-weight:600">Direct Taxes / Income, Profits &amp; Capital Gains</td><td class="num">12,345.794</td><td class="num">57.25%</td><td class="num v22">13,325.760</td><td class="num v22">6.18%</td></tr>
+          <tr><td class="sub-lbl">Corporate Income Tax</td><td class="num">8,170.299</td><td class="num">37.89%</td><td class="num v22">10,063.607</td><td class="num v22">4.42%</td></tr>
+          <tr><td class="sub-lbl">Business Income Tax</td><td class="num">1,276.903</td><td class="num">5.92%</td><td class="num v22">1,298.427</td><td class="num v22">0.72%</td></tr>
+          <tr><td class="sub-lbl">Personal Income Tax</td><td class="num">957.313</td><td class="num">4.44%</td><td class="num v22">1,963.727</td><td class="num v22">1.03%</td></tr>
+          <tr><td class="sub-lbl">Other Direct Tax</td><td class="num">39.342</td><td class="num">0.18%</td><td class="num v22">—</td><td class="num v22">—</td></tr>
+          <tr><td class="sub-lbl">Royalties</td><td class="num">1,901.937</td><td class="num">8.82%</td><td class="num v22">4,386.797</td><td class="num v22">2.80%</td></tr>
+          <tr class="hl"><td class="lbl">Taxes on Property</td><td class="num">—</td><td class="num">—</td><td class="num v22">144.625</td><td class="num v22">0.07%</td></tr>
+          <tr><td class="sub-lbl">Recurrent Taxes on immovable property</td><td class="num">—</td><td class="num">—</td><td class="num v22">8.986</td><td class="num v22">0.00%</td></tr>
+          <tr><td class="sub-lbl">Taxes on Capital Transactions</td><td class="num">—</td><td class="num">—</td><td class="num v22">135.638</td><td class="num v22">0.07%</td></tr>
+          <tr class="hl"><td class="sub-lbl" style="padding-left:14px;font-weight:600">Indirect Taxes / Goods &amp; Services</td><td class="num">9,218.670</td><td class="num">42.75%</td><td class="num v22">7,452.002</td><td class="num v22">3.87%</td></tr>
+          <tr><td class="sub-lbl">Sales Tax / GST</td><td class="num">3,800.120</td><td class="num">17.62%</td><td class="num v22">5,608.668</td><td class="num v22">3.02%</td></tr>
+          <tr><td class="sub-lbl">Excise Duty</td><td class="num">3,579.663</td><td class="num">16.60%</td><td class="num v22">386.229</td><td class="num v22">0.24%</td></tr>
+          <tr><td class="sub-lbl">Green Tax</td><td class="num">909.652</td><td class="num">4.22%</td><td class="num v22">992.864</td><td class="num v22">0.38%</td></tr>
+          <tr><td class="sub-lbl">Taxes on permission to use goods / activities</td><td class="num">—</td><td class="num">—</td><td class="num v22">464.240</td><td class="num v22">0.22%</td></tr>
+          <tr><td class="sub-lbl">Other Indirect Tax</td><td class="num">366.673</td><td class="num">1.70%</td><td class="num v22">—</td><td class="num v22">—</td></tr>
+          <tr class="hl"><td class="lbl">Import / Customs Duty</td><td class="num">562.563</td><td class="num">2.61%</td><td class="num v22">509.978</td><td class="num v22">0.33%</td></tr>
+          <tr class="hl"><td class="lbl">Other Taxes (incl. Royalty)</td><td class="num">—</td><td class="num">—</td><td class="num v22">4,410.687</td><td class="num v22">2.83%</td></tr>
+          <tr class="hl"><td class="lbl">Other Revenue</td><td class="num">—</td><td class="num">—</td><td class="num v22">11,544.267</td><td class="num v22">4.84%</td></tr>
+          <tr><td class="sub-lbl">Property Income</td><td class="num">—</td><td class="num">—</td><td class="num v22">11,555.825</td><td class="num v22">4.85%</td></tr>
+          <tr><td class="sub-lbl">Social Contributions</td><td class="num">—</td><td class="num">—</td><td class="num v22">-11.558</td><td class="num v22">0.00%</td></tr>
+          <tr class="hl"><td class="lbl">Current Revenue from Government Agencies</td><td class="num">—</td><td class="num">—</td><td class="num v22">1,233.823</td><td class="num v22">0.64%</td></tr>
+          <tr><td class="sub-lbl">Administrative Fees &amp; Charges</td><td class="num">—</td><td class="num">—</td><td class="num v22">834.439</td><td class="num v22">0.45%</td></tr>
+          <tr><td class="sub-lbl">Sale of Goods and Commodities</td><td class="num">—</td><td class="num">—</td><td class="num v22">399.385</td><td class="num v22">0.19%</td></tr>
+          <tr class="hl"><td class="lbl">Capital Revenue from Government Agencies</td><td class="num">—</td><td class="num">—</td><td class="num v22">421.931</td><td class="num v22">0.18%</td></tr>
+          <tr><td class="sub-lbl">GDP (Source-MFCC — 4th quarter update)</td><td class="num">—</td><td class="num">—</td><td class="num v22">237,052.670</td><td class="num v22">—</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div><!-- end tr-comparison -->
+
+</section>
+
+</main>
+
+</div><!-- end page-body -->
+
+<script>
+function showTab(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.querySelector('[data-tab="'+id+'"]').classList.add('active');
+  document.querySelector('.main').scrollTop = 0;
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+function showSubTab(id) {
+  const target = document.getElementById(id);
+  if (!target) return;
+  const parent = target.parentElement;
+  // Hide all sub-sections that are siblings of the target
+  parent.querySelectorAll(':scope > .sub-section').forEach(s => s.classList.remove('active'));
+  // Deactivate all sub-tabs whose onclick points to this same parent's tabs
+  parent.querySelectorAll(':scope > .sub-nav .sub-tab').forEach(t => t.classList.remove('active'));
+  target.classList.add('active');
+  // Activate the matching tab button
+  const btn = parent.querySelector(`.sub-tab[data-sub="${id}"]`);
+  if (btn) btn.classList.add('active');
+}
+</script>
+</body>
+</html>
