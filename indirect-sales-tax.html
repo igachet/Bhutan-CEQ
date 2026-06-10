@@ -411,7 +411,6 @@
     .main { order: 2; }
   }
 
-/* nav-tab as link */
 .nav-tab { text-decoration: none; display: flex; }
 .sub-tab { text-decoration: none; }
 
@@ -428,17 +427,15 @@
 </header>
 <div class="page-body">
 <nav class="nav-sidebar">
+  <a href="index.html" style="display:flex; align-items:center; gap:7px; padding:12px 16px 10px; font-size:11.5px; color:var(--text-muted); text-decoration:none; border-bottom:1px solid var(--border); transition:color 0.15s;" onmouseover="this.style.color='var(--text-primary)'" onmouseout="this.style.color='var(--text-muted)'">
+    <span style="font-size:13px;">←</span> Back to Dashboard
+  </a>
   <div class="nav-sidebar-title">Fiscal Interventions</div>
-  <div style="margin:0 12px 10px; padding:8px 10px; background:#e8edf4; border-left:3px solid #0047b3; font-size:10.5px; line-height:1.6; color:#1a1816; font-family:'IBM Plex Mono',monospace;">
-    💬 To comment: highlight any text → Annotate.<br>
-    1. Select <strong>Bhutan CEQ</strong> (not Public)<br>
-    2. Add a <strong>tag</strong> with the section name:<br>
-    <span style="display:block; margin-top:4px; color:#0047b3;">
-      direct-taxes · indirect-taxes<br>
-      transfers · subsidies · social<br>
-      education · health · govexp<br>
-      tax-revenue
-    </span>
+  <div style="margin:0 12px 12px; padding:9px 11px; background:#fff8e1; border-left:3px solid #f59e0b; border-radius:0 4px 4px 0; font-size:10.5px; line-height:1.65; color:#1a1816; font-family:'IBM Plex Mono',monospace; box-shadow: 0 1px 4px rgba(245,158,11,0.15);">
+    <span style="font-size:12px;">💬</span> <strong>To comment:</strong><br>
+    Highlight any text → <strong>Annotate</strong><br>
+    Select <strong style="color:#0047b3;">Bhutan CEQ</strong><br>
+    <span style="color:#999; font-size:9.5px;">(not Public)</span>
   </div>
   <a class="nav-tab" href="direct-taxes.html"><span class="tab-icon">💳</span> Direct Taxes</a>
   <a class="nav-tab active" href="indirect-sales-tax.html"><span class="tab-icon">🏷️</span> Indirect Taxes</a>
