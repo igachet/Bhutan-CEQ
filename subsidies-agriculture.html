@@ -411,9 +411,8 @@
     .main { order: 2; }
   }
 
-.nav-tab { text-decoration: none; display: flex; }
-.sub-tab { text-decoration: none; }
-
+.nav-tab { text-decoration:none; display:flex; }
+.sub-tab { text-decoration:none; }
 </style>
 </head>
 <body>
@@ -427,20 +426,18 @@
 </header>
 <div class="page-body">
 <nav class="nav-sidebar">
-  <a href="index.html" style="display:flex; align-items:center; gap:7px; padding:12px 16px 10px; font-size:11.5px; color:var(--text-muted); text-decoration:none; border-bottom:1px solid var(--border); transition:color 0.15s;" onmouseover="this.style.color='var(--text-primary)'" onmouseout="this.style.color='var(--text-muted)'">
-    <span style="font-size:13px;">←</span> Back to Dashboard
-  </a>
+  <a href="index.html" style="display:flex;align-items:center;gap:7px;padding:12px 16px 10px;font-size:11.5px;color:var(--text-muted);text-decoration:none;border-bottom:1px solid var(--border);" onmouseover="this.style.color='var(--text-primary)'" onmouseout="this.style.color='var(--text-muted)'"><span style="font-size:13px;">←</span> Back to Dashboard</a>
   <div class="nav-sidebar-title">Fiscal Interventions</div>
-  <div style="margin:0 12px 12px; padding:9px 11px; background:#fff8e1; border-left:3px solid #f59e0b; border-radius:0 4px 4px 0; font-size:10.5px; line-height:1.65; color:#1a1816; font-family:'IBM Plex Mono',monospace; box-shadow: 0 1px 4px rgba(245,158,11,0.15);">
+  <div style="margin:0 12px 12px;padding:9px 11px;background:#fff8e1;border-left:3px solid #f59e0b;border-radius:0 4px 4px 0;font-size:10.5px;line-height:1.65;color:#1a1816;font-family:'IBM Plex Mono',monospace;box-shadow:0 1px 4px rgba(245,158,11,0.15);">
     <span style="font-size:12px;">💬</span> <strong>To comment:</strong><br>
     Highlight any text → <strong>Annotate</strong><br>
     Select <strong style="color:#0047b3;">Bhutan CEQ</strong><br>
-    <span style="color:#999; font-size:9.5px;">(not Public)</span>
+    <span style="color:#999;font-size:9.5px;">(not Public)</span>
   </div>
   <a class="nav-tab" href="direct-taxes.html"><span class="tab-icon">💳</span> Direct Taxes</a>
   <a class="nav-tab" href="indirect-sales-tax.html"><span class="tab-icon">🏷️</span> Indirect Taxes</a>
   <a class="nav-tab" href="transfers.html"><span class="tab-icon">🤝</span> Transfers</a>
-  <a class="nav-tab" href="subsidies-electricity.html"><span class="tab-icon">⚡</span> Subsidies</a>
+  <a class="nav-tab active" href="subsidies-electricity.html"><span class="tab-icon">⚡</span> Subsidies</a>
   <a class="nav-tab" href="social-schemes.html"><span class="tab-icon">🛡️</span> Social Insurance</a>
   <a class="nav-tab" href="education.html"><span class="tab-icon">🎓</span> Education</a>
   <a class="nav-tab" href="health.html"><span class="tab-icon">🏥</span> Health</a>
@@ -449,15 +446,14 @@
 </nav>
 <main class="main">
 <div class="section-header">
-    <div>
-      <div class="section-title">Subsidies</div>
-      <div class="section-desc">CEQ 2017: not included. CEQ 2022: electricity, agriculture, and fuel subsidies.</div>
-    </div>
+  <div><div class="section-title">Subsidies</div><div class="section-desc">CEQ 2017: not included. CEQ 2022: electricity, agriculture, and fuel subsidies.</div></div>
+  <div class="source-links"><a class="source-link" href="#" onclick="alert('Source: Final-_-BPC-Tariff-Review-Report-2022.pdf\nPages 39, 42, 45')">📄 BPC Tariff Review 2022 (PDF)</a><a class="source-link" href="#" onclick="return false;">📄 Bhutan 2024 Labor Market Assessment Report</a><a class="source-link" href="#" onclick="return false;">📄 UNICEF 2025 Social Protection Situational Analysis</a><a class="source-link" href="#" onclick="return false;">📄 IMF 2024 Article IV Consultation</a></div>
+</div>
 <div class="sub-nav">
-    <a class="sub-tab" href="subsidies-electricity.html">Electricity</a>
-    <a class="sub-tab active" href="subsidies-agriculture.html">Agriculture</a>
-    <a class="sub-tab" href="subsidies-fuels.html">Fuels</a>
-  </div>
+  <a class="sub-tab" href="subsidies-electricity.html">Electricity</a>
+  <a class="sub-tab active" href="subsidies-agriculture.html">Agriculture</a>
+  <a class="sub-tab" href="subsidies-fuels.html">Fuels</a>
+</div>
 <div class="info-box">
     <div class="info-box-label">CEQ 2017</div>
 <div class="tcard">

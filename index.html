@@ -7,7 +7,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,400&family=Inter:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <script async src="https://hypothes.is/embed.js"></script>
 <style>
-
   :root {
     --bg: #ffffff;
     --surface: #ffffff;
@@ -411,8 +410,8 @@
     .main { order: 2; }
   }
 
-.nav-tab { text-decoration: none; display: flex; }
-.sub-tab { text-decoration: none; }
+.nav-tab {text-decoration:none;display:flex;}
+.sub-tab {text-decoration:none;}
 </style>
 </head>
 <body>
@@ -426,15 +425,13 @@
 </header>
 <div class="page-body">
 <nav class="nav-sidebar">
-  <a href="index.html" style="display:flex; align-items:center; gap:7px; padding:12px 16px 10px; font-size:11.5px; color:var(--text-muted); text-decoration:none; border-bottom:1px solid var(--border); transition:color 0.15s;" onmouseover="this.style.color='var(--text-primary)'" onmouseout="this.style.color='var(--text-muted)'">
-    <span style="font-size:13px;">←</span> Back to Dashboard
-  </a>
+  <a href="index.html" style="display:flex;align-items:center;gap:7px;padding:12px 16px 10px;font-size:11.5px;color:var(--text-muted);text-decoration:none;border-bottom:1px solid var(--border);" onmouseover="this.style.color='var(--text-primary)'" onmouseout="this.style.color='var(--text-muted)'"><span style="font-size:13px;">←</span> Back to Dashboard</a>
   <div class="nav-sidebar-title">Fiscal Interventions</div>
-  <div style="margin:0 12px 12px; padding:9px 11px; background:#fff8e1; border-left:3px solid #f59e0b; border-radius:0 4px 4px 0; font-size:10.5px; line-height:1.65; color:#1a1816; font-family:'IBM Plex Mono',monospace; box-shadow: 0 1px 4px rgba(245,158,11,0.15);">
+  <div style="margin:0 12px 12px;padding:9px 11px;background:#fff8e1;border-left:3px solid #f59e0b;border-radius:0 4px 4px 0;font-size:10.5px;line-height:1.65;color:#1a1816;font-family:'IBM Plex Mono',monospace;box-shadow:0 1px 4px rgba(245,158,11,0.15);">
     <span style="font-size:12px;">💬</span> <strong>To comment:</strong><br>
     Highlight any text → <strong>Annotate</strong><br>
     Select <strong style="color:#0047b3;">Bhutan CEQ</strong><br>
-    <span style="color:#999; font-size:9.5px;">(not Public)</span>
+    <span style="color:#999;font-size:9.5px;">(not Public)</span>
   </div>
   <a class="nav-tab" href="direct-taxes.html"><span class="tab-icon">💳</span> Direct Taxes</a>
   <a class="nav-tab" href="indirect-sales-tax.html"><span class="tab-icon">🏷️</span> Indirect Taxes</a>
@@ -446,24 +443,11 @@
   <a class="nav-tab" href="gov-expenditure.html"><span class="tab-icon">🏛️</span> Gov. Expenditure</a>
   <a class="nav-tab" href="taxrev-2017.html"><span class="tab-icon">📊</span> Tax Revenue</a>
 </nav>
-<main class="main">
-
-  <div style="padding:60px 0 40px;">
-    <div style="font-family:'Playfair Display',serif; font-size:28px; font-weight:600; color:var(--text-primary); margin-bottom:12px;">Bhutan CEQ Fiscal Policy Dashboard</div>
-    <div style="font-size:13px; color:var(--text-secondary); margin-bottom:40px; font-weight:300;">CEQ 2017 → 2022 Update &nbsp;·&nbsp; Select a section below to begin.</div>
-    <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:16px; max-width:800px;">
-      <a href="direct-taxes.html" style="display:block;padding:20px;border:1px solid var(--border);text-decoration:none;color:var(--text-primary);" onmouseover="this.style.background='var(--surface-2)'" onmouseout="this.style.background=''"><div style="font-size:20px;margin-bottom:8px;">💳</div><div style="font-weight:600;font-size:13px;">Direct Taxes</div><div style="font-size:11.5px;color:var(--text-secondary);margin-top:4px;">PIT brackets 2017 &amp; 2022–2025</div></a>
-      <a href="indirect-sales-tax.html" style="display:block;padding:20px;border:1px solid var(--border);text-decoration:none;color:var(--text-primary);" onmouseover="this.style.background='var(--surface-2)'" onmouseout="this.style.background=''"><div style="font-size:20px;margin-bottom:8px;">🏷️</div><div style="font-weight:600;font-size:13px;">Indirect Taxes</div><div style="font-size:11.5px;color:var(--text-secondary);margin-top:4px;">Sales Tax, Excise, Green Tax, Customs</div></a>
-      <a href="transfers.html" style="display:block;padding:20px;border:1px solid var(--border);text-decoration:none;color:var(--text-primary);" onmouseover="this.style.background='var(--surface-2)'" onmouseout="this.style.background=''"><div style="font-size:20px;margin-bottom:8px;">🤝</div><div style="font-weight:600;font-size:13px;">Transfers</div><div style="font-size:11.5px;color:var(--text-secondary);margin-top:4px;">Kidu programme</div></a>
-      <a href="subsidies-electricity.html" style="display:block;padding:20px;border:1px solid var(--border);text-decoration:none;color:var(--text-primary);" onmouseover="this.style.background='var(--surface-2)'" onmouseout="this.style.background=''"><div style="font-size:20px;margin-bottom:8px;">⚡</div><div style="font-weight:600;font-size:13px;">Subsidies</div><div style="font-size:11.5px;color:var(--text-secondary);margin-top:4px;">Electricity, Agriculture, Fuels</div></a>
-      <a href="social-schemes.html" style="display:block;padding:20px;border:1px solid var(--border);text-decoration:none;color:var(--text-primary);" onmouseover="this.style.background='var(--surface-2)'" onmouseout="this.style.background=''"><div style="font-size:20px;margin-bottom:8px;">🛡️</div><div style="font-weight:600;font-size:13px;">Social Insurance</div><div style="font-size:11.5px;color:var(--text-secondary);margin-top:4px;">NPPF, PPF, RLI, GIS, GSLI</div></a>
-      <a href="education.html" style="display:block;padding:20px;border:1px solid var(--border);text-decoration:none;color:var(--text-primary);" onmouseover="this.style.background='var(--surface-2)'" onmouseout="this.style.background=''"><div style="font-size:20px;margin-bottom:8px;">🎓</div><div style="font-weight:600;font-size:13px;">Education</div><div style="font-size:11.5px;color:var(--text-secondary);margin-top:4px;">Spending narrative &amp; budget tables</div></a>
-      <a href="health.html" style="display:block;padding:20px;border:1px solid var(--border);text-decoration:none;color:var(--text-primary);" onmouseover="this.style.background='var(--surface-2)'" onmouseout="this.style.background=''"><div style="font-size:20px;margin-bottom:8px;">🏥</div><div style="font-weight:600;font-size:13px;">Health</div><div style="font-size:11.5px;color:var(--text-secondary);margin-top:4px;">Health expenditure data</div></a>
-      <a href="gov-expenditure.html" style="display:block;padding:20px;border:1px solid var(--border);text-decoration:none;color:var(--text-primary);" onmouseover="this.style.background='var(--surface-2)'" onmouseout="this.style.background=''"><div style="font-size:20px;margin-bottom:8px;">🏛️</div><div style="font-weight:600;font-size:13px;">Gov. Expenditure</div><div style="font-size:11.5px;color:var(--text-secondary);margin-top:4px;">Sectoral expenditure 2017 &amp; 2022</div></a>
-      <a href="taxrev-2017.html" style="display:block;padding:20px;border:1px solid var(--border);text-decoration:none;color:var(--text-primary);" onmouseover="this.style.background='var(--surface-2)'" onmouseout="this.style.background=''"><div style="font-size:20px;margin-bottom:8px;">📊</div><div style="font-weight:600;font-size:13px;">Tax Revenue</div><div style="font-size:11.5px;color:var(--text-secondary);margin-top:4px;">General government revenue tables</div></a>
-    </div>
-  </div>
-</main>
+<main class="main"><div style="padding:60px 0 40px;">
+  <div style="font-family:'Playfair Display',serif;font-size:28px;font-weight:600;margin-bottom:12px;">Bhutan CEQ Fiscal Policy Dashboard</div>
+  <div style="font-size:13px;color:var(--text-secondary);margin-bottom:40px;font-weight:300;">CEQ 2017 → 2022 Update &nbsp;·&nbsp; Select a section below to begin.</div>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:800px;"><a href="direct-taxes.html" style="display:block;padding:20px;border:1px solid var(--border);text-decoration:none;color:var(--text-primary);" onmouseover="this.style.background='var(--surface-2)'" onmouseout="this.style.background=''"><div style="font-size:20px;margin-bottom:8px;">💳</div><div style="font-weight:600;font-size:13px;">Direct Taxes</div><div style="font-size:11.5px;color:var(--text-secondary);margin-top:4px;">PIT brackets 2017 &amp; 2022–2025</div></a><a href="indirect-sales-tax.html" style="display:block;padding:20px;border:1px solid var(--border);text-decoration:none;color:var(--text-primary);" onmouseover="this.style.background='var(--surface-2)'" onmouseout="this.style.background=''"><div style="font-size:20px;margin-bottom:8px;">🏷️</div><div style="font-weight:600;font-size:13px;">Indirect Taxes</div><div style="font-size:11.5px;color:var(--text-secondary);margin-top:4px;">Sales Tax, Excise, Green Tax, Customs</div></a><a href="transfers.html" style="display:block;padding:20px;border:1px solid var(--border);text-decoration:none;color:var(--text-primary);" onmouseover="this.style.background='var(--surface-2)'" onmouseout="this.style.background=''"><div style="font-size:20px;margin-bottom:8px;">🤝</div><div style="font-weight:600;font-size:13px;">Transfers</div><div style="font-size:11.5px;color:var(--text-secondary);margin-top:4px;">Kidu programme</div></a><a href="subsidies-electricity.html" style="display:block;padding:20px;border:1px solid var(--border);text-decoration:none;color:var(--text-primary);" onmouseover="this.style.background='var(--surface-2)'" onmouseout="this.style.background=''"><div style="font-size:20px;margin-bottom:8px;">⚡</div><div style="font-weight:600;font-size:13px;">Subsidies</div><div style="font-size:11.5px;color:var(--text-secondary);margin-top:4px;">Electricity, Agriculture, Fuels</div></a><a href="social-schemes.html" style="display:block;padding:20px;border:1px solid var(--border);text-decoration:none;color:var(--text-primary);" onmouseover="this.style.background='var(--surface-2)'" onmouseout="this.style.background=''"><div style="font-size:20px;margin-bottom:8px;">🛡️</div><div style="font-weight:600;font-size:13px;">Social Insurance</div><div style="font-size:11.5px;color:var(--text-secondary);margin-top:4px;">NPPF, PPF, RLI, GIS, GSLI</div></a><a href="education.html" style="display:block;padding:20px;border:1px solid var(--border);text-decoration:none;color:var(--text-primary);" onmouseover="this.style.background='var(--surface-2)'" onmouseout="this.style.background=''"><div style="font-size:20px;margin-bottom:8px;">🎓</div><div style="font-weight:600;font-size:13px;">Education</div><div style="font-size:11.5px;color:var(--text-secondary);margin-top:4px;">Spending narrative &amp; budget tables</div></a><a href="health.html" style="display:block;padding:20px;border:1px solid var(--border);text-decoration:none;color:var(--text-primary);" onmouseover="this.style.background='var(--surface-2)'" onmouseout="this.style.background=''"><div style="font-size:20px;margin-bottom:8px;">🏥</div><div style="font-weight:600;font-size:13px;">Health</div><div style="font-size:11.5px;color:var(--text-secondary);margin-top:4px;">Health expenditure data</div></a><a href="gov-expenditure.html" style="display:block;padding:20px;border:1px solid var(--border);text-decoration:none;color:var(--text-primary);" onmouseover="this.style.background='var(--surface-2)'" onmouseout="this.style.background=''"><div style="font-size:20px;margin-bottom:8px;">🏛️</div><div style="font-weight:600;font-size:13px;">Gov. Expenditure</div><div style="font-size:11.5px;color:var(--text-secondary);margin-top:4px;">Sectoral expenditure 2017 &amp; 2022</div></a><a href="taxrev-2017.html" style="display:block;padding:20px;border:1px solid var(--border);text-decoration:none;color:var(--text-primary);" onmouseover="this.style.background='var(--surface-2)'" onmouseout="this.style.background=''"><div style="font-size:20px;margin-bottom:8px;">📊</div><div style="font-weight:600;font-size:13px;">Tax Revenue</div><div style="font-size:11.5px;color:var(--text-secondary);margin-top:4px;">General government revenue tables</div></a></div>
+</div></main>
 </div>
 </body>
 </html>
