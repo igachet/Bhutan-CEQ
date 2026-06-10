@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bhutan CEQ Dashboard — Bhutan CEQ Dashboard</title>
+<title>Direct Taxes — Bhutan CEQ Dashboard</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,400&family=Inter:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <script async src="https://hypothes.is/embed.js"></script>
 <style>
@@ -440,7 +440,7 @@
       tax-revenue
     </span>
   </div>
-  <a class="nav-tab" href="direct-taxes.html"><span class="tab-icon">💳</span> Direct Taxes</a>
+  <a class="nav-tab active" href="direct-taxes.html"><span class="tab-icon">💳</span> Direct Taxes</a>
   <a class="nav-tab" href="indirect-sales-tax.html"><span class="tab-icon">🏷️</span> Indirect Taxes</a>
   <a class="nav-tab" href="transfers.html"><span class="tab-icon">🤝</span> Transfers</a>
   <a class="nav-tab" href="subsidies-electricity.html"><span class="tab-icon">⚡</span> Subsidies</a>
@@ -451,57 +451,79 @@
   <a class="nav-tab" href="taxrev-2017.html"><span class="tab-icon">📊</span> Tax Revenue</a>
 </nav>
 <main class="main">
-
-  <div style="padding:60px 0 40px;">
-    <div style="font-family:'Playfair Display',serif; font-size:28px; font-weight:600; color:var(--text-primary); margin-bottom:12px;">Bhutan CEQ Fiscal Policy Dashboard</div>
-    <div style="font-size:13px; color:var(--text-secondary); margin-bottom:40px; font-weight:300;">CEQ 2017 → 2022 Update &nbsp;·&nbsp; Select a section from the left to begin.</div>
-    <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:16px; max-width:800px;">
-      <a href="direct-taxes.html" style="display:block; padding:20px; border:1px solid var(--border); text-decoration:none; color:var(--text-primary); transition:background 0.15s;" onmouseover="this.style.background='var(--surface-2)'" onmouseout="this.style.background=''">
-        <div style="font-size:20px; margin-bottom:8px;">💳</div>
-        <div style="font-weight:600; font-size:13px;">Direct Taxes</div>
-        <div style="font-size:11.5px; color:var(--text-secondary); margin-top:4px;">PIT brackets 2017 &amp; 2022–2025</div>
-      </a>
-      <a href="indirect-sales-tax.html" style="display:block; padding:20px; border:1px solid var(--border); text-decoration:none; color:var(--text-primary); transition:background 0.15s;" onmouseover="this.style.background='var(--surface-2)'" onmouseout="this.style.background=''">
-        <div style="font-size:20px; margin-bottom:8px;">🏷️</div>
-        <div style="font-weight:600; font-size:13px;">Indirect Taxes</div>
-        <div style="font-size:11.5px; color:var(--text-secondary); margin-top:4px;">Sales Tax, Excise, Green Tax, Customs</div>
-      </a>
-      <a href="transfers.html" style="display:block; padding:20px; border:1px solid var(--border); text-decoration:none; color:var(--text-primary); transition:background 0.15s;" onmouseover="this.style.background='var(--surface-2)'" onmouseout="this.style.background=''">
-        <div style="font-size:20px; margin-bottom:8px;">🤝</div>
-        <div style="font-weight:600; font-size:13px;">Transfers</div>
-        <div style="font-size:11.5px; color:var(--text-secondary); margin-top:4px;">Kidu programme</div>
-      </a>
-      <a href="subsidies-electricity.html" style="display:block; padding:20px; border:1px solid var(--border); text-decoration:none; color:var(--text-primary); transition:background 0.15s;" onmouseover="this.style.background='var(--surface-2)'" onmouseout="this.style.background=''">
-        <div style="font-size:20px; margin-bottom:8px;">⚡</div>
-        <div style="font-weight:600; font-size:13px;">Subsidies</div>
-        <div style="font-size:11.5px; color:var(--text-secondary); margin-top:4px;">Electricity, Agriculture, Fuels</div>
-      </a>
-      <a href="social-schemes.html" style="display:block; padding:20px; border:1px solid var(--border); text-decoration:none; color:var(--text-primary); transition:background 0.15s;" onmouseover="this.style.background='var(--surface-2)'" onmouseout="this.style.background=''">
-        <div style="font-size:20px; margin-bottom:8px;">🛡️</div>
-        <div style="font-weight:600; font-size:13px;">Social Insurance</div>
-        <div style="font-size:11.5px; color:var(--text-secondary); margin-top:4px;">NPPF, PPF, RLI, GIS, GSLI</div>
-      </a>
-      <a href="education.html" style="display:block; padding:20px; border:1px solid var(--border); text-decoration:none; color:var(--text-primary); transition:background 0.15s;" onmouseover="this.style.background='var(--surface-2)'" onmouseout="this.style.background=''">
-        <div style="font-size:20px; margin-bottom:8px;">🎓</div>
-        <div style="font-weight:600; font-size:13px;">Education</div>
-        <div style="font-size:11.5px; color:var(--text-secondary); margin-top:4px;">Spending narrative &amp; budget tables</div>
-      </a>
-      <a href="health.html" style="display:block; padding:20px; border:1px solid var(--border); text-decoration:none; color:var(--text-primary); transition:background 0.15s;" onmouseover="this.style.background='var(--surface-2)'" onmouseout="this.style.background=''">
-        <div style="font-size:20px; margin-bottom:8px;">🏥</div>
-        <div style="font-weight:600; font-size:13px;">Health</div>
-        <div style="font-size:11.5px; color:var(--text-secondary); margin-top:4px;">Health expenditure data</div>
-      </a>
-      <a href="gov-expenditure.html" style="display:block; padding:20px; border:1px solid var(--border); text-decoration:none; color:var(--text-primary); transition:background 0.15s;" onmouseover="this.style.background='var(--surface-2)'" onmouseout="this.style.background=''">
-        <div style="font-size:20px; margin-bottom:8px;">🏛️</div>
-        <div style="font-weight:600; font-size:13px;">Gov. Expenditure</div>
-        <div style="font-size:11.5px; color:var(--text-secondary); margin-top:4px;">Sectoral expenditure 2017 &amp; 2022</div>
-      </a>
-      <a href="taxrev-2017.html" style="display:block; padding:20px; border:1px solid var(--border); text-decoration:none; color:var(--text-primary); transition:background 0.15s;" onmouseover="this.style.background='var(--surface-2)'" onmouseout="this.style.background=''">
-        <div style="font-size:20px; margin-bottom:8px;">📊</div>
-        <div style="font-weight:600; font-size:13px;">Tax Revenue</div>
-        <div style="font-size:11.5px; color:var(--text-secondary); margin-top:4px;">General government revenue tables</div>
-      </a>
+<div class="section-header">
+    <div>
+      <div class="section-title">Direct Taxes — Personal Income Tax (PIT)</div>
+      <div class="section-desc">PIT bracket structures across reference years, side by side.</div>
     </div>
+    <div class="source-links">
+      <a class="source-link" href="#" onclick="return false;">📄 2017: Bhutan CEQ 2017: Rules on the Income Tax Act of Bhutan 2001 (2017)</a>
+      <a class="source-link" href="#" onclick="return false;">📄 Income Tax Act of the Kingdom of Bhutan, 2001</a>
+    </div>
+  </div>
+
+  <div class="grid-2">
+
+    <!-- 2017 -->
+    <div class="tcard">
+      <div class="tcard-head">
+        <div><h3>PIT Brackets — 2017</h3></div>
+      </div>
+      <table class="dt">
+        <thead>
+          <tr><th>Minimum (Nu.)</th><th>Maximum (Nu.)</th><th>Rate</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="num">0</td><td class="num">200,000</td><td><span class="rp rp0">0%</span></td></tr>
+          <tr><td class="num">200,000</td><td class="num">250,000</td><td><span class="rp rp10">10%</span></td></tr>
+          <tr><td class="num">250,000</td><td class="num">500,000</td><td><span class="rp rp15">15%</span></td></tr>
+          <tr><td class="num">500,000</td><td class="num">1,000,000</td><td><span class="rp rp20">20%</span></td></tr>
+          <tr><td class="num">1,000,000</td><td class="num">—</td><td><span class="rp rp25">25%</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 2022–2025 -->
+    <div class="tcard">
+      <div class="tcard-head tcard-head-alt">
+        <div><h3>PIT Brackets — 2022 to 2025</h3></div>
+      </div>
+      <table class="dt">
+        <thead>
+          <tr><th>Minimum (Nu.)</th><th>Maximum (Nu.)</th><th class="h22">Rate</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="num">0</td><td class="num">300,000</td><td class="v22"><span class="rp rp0">Nil</span></td></tr>
+          <tr><td class="num">300,000</td><td class="num">400,000</td><td class="v22"><span class="rp rp10">10%</span></td></tr>
+          <tr><td class="num">400,000</td><td class="num">650,000</td><td class="v22"><span class="rp rp15">15%</span></td></tr>
+          <tr><td class="num">650,000</td><td class="num">1,000,000</td><td class="v22"><span class="rp rp20">20%</span></td></tr>
+          <tr><td class="num">1,000,000</td><td class="num">1,500,000</td><td class="v22"><span class="rp rp25">25%</span></td></tr>
+          <tr><td class="num">1,500,000</td><td class="num">—</td><td class="v22"><span class="rp rp30">30%</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div><!-- end grid-2 -->
+
+  <!-- PIT Eligibility and Income Sources -->
+  <div class="tcard">
+    <div class="tcard-head">
+      <div><h3>PIT — Eligibility &amp; Income Sources</h3></div>
+    </div>
+    <table class="dt">
+      <thead><tr><th style="width:220px">Item</th><th>2017</th><th class="h22">2022 to 2025</th></tr></thead>
+      <tbody>
+        <tr>
+          <td class="lbl">Liable taxpayers (threshold)</td>
+          <td>All citizens and residents earning more than <strong>Nu. 200,000</strong> per year</td>
+          <td class="v22">All citizens and residents earning more than <strong>Nu. 300,000</strong> per year</td>
+        </tr>
+        <tr>
+          <td class="lbl">Income sources subject to PIT</td>
+          <td colspan="2">Salary; property; dividends; interests; income from cash crops; income from hire of privately-owned vehicles, plant and machinery; income from intellectual property rights</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </main>
 </div>

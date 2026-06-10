@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bhutan CEQ Dashboard — Bhutan CEQ Dashboard</title>
+<title>Social Insurance — Rates — Bhutan CEQ Dashboard</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,400&family=Inter:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <script async src="https://hypothes.is/embed.js"></script>
 <style>
@@ -451,56 +451,41 @@
   <a class="nav-tab" href="taxrev-2017.html"><span class="tab-icon">📊</span> Tax Revenue</a>
 </nav>
 <main class="main">
+<div class="section-header">
+    <div>
+      <div class="section-title">Social Insurance</div>
+      <div class="section-desc">Pension and provident funds, life insurance schemes, and rural life insurance. 2017 vs. 2022 comparison.</div>
+    </div>
+<div class="sub-nav">
+    <a class="sub-tab" href="social-schemes.html">Schemes</a>
+    <a class="sub-tab active" href="social-rates.html">Rates</a>
+  </div>
+<!-- GIS/GSLI premium tables -->
+  <div class="grid-2">
+    <div class="tcard">
+      <div class="tcard-head"><div><h3>Member grouping, sum assured amount, and subscription rate with effect 1st July 2014</h3></div></div>
+      <table class="dt">
+        <thead><tr><th>Group</th><th>Grade</th><th>Total Sub./month (Nu.)</th><th>Insurance Fund (Nu.)</th><th>Savings Fund (Nu.)</th><th>Coverage (Nu.)</th></tr></thead>
+        <tbody>
+          <tr><td class="num">A</td><td>1–3 (EX/ES Level)</td><td class="num">500</td><td class="num">150</td><td class="num">350</td><td class="num">500,000</td></tr>
+          <tr><td class="num">B</td><td>4–8 (P Level)</td><td class="num">400</td><td class="num">120</td><td class="num">280</td><td class="num">400,000</td></tr>
+          <tr><td class="num">C</td><td>9–13 (S Level)</td><td class="num">300</td><td class="num">90</td><td class="num">210</td><td class="num">300,000</td></tr>
+          <tr><td class="num">D</td><td>14–20 (O Level) + ESP and GSC</td><td class="num">200</td><td class="num">60</td><td class="num">140</td><td class="num">200,000</td></tr>
+        </tbody>
+      </table>
+    </div>
 
-  <div style="padding:60px 0 40px;">
-    <div style="font-family:'Playfair Display',serif; font-size:28px; font-weight:600; color:var(--text-primary); margin-bottom:12px;">Bhutan CEQ Fiscal Policy Dashboard</div>
-    <div style="font-size:13px; color:var(--text-secondary); margin-bottom:40px; font-weight:300;">CEQ 2017 → 2022 Update &nbsp;·&nbsp; Select a section from the left to begin.</div>
-    <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:16px; max-width:800px;">
-      <a href="direct-taxes.html" style="display:block; padding:20px; border:1px solid var(--border); text-decoration:none; color:var(--text-primary); transition:background 0.15s;" onmouseover="this.style.background='var(--surface-2)'" onmouseout="this.style.background=''">
-        <div style="font-size:20px; margin-bottom:8px;">💳</div>
-        <div style="font-weight:600; font-size:13px;">Direct Taxes</div>
-        <div style="font-size:11.5px; color:var(--text-secondary); margin-top:4px;">PIT brackets 2017 &amp; 2022–2025</div>
-      </a>
-      <a href="indirect-sales-tax.html" style="display:block; padding:20px; border:1px solid var(--border); text-decoration:none; color:var(--text-primary); transition:background 0.15s;" onmouseover="this.style.background='var(--surface-2)'" onmouseout="this.style.background=''">
-        <div style="font-size:20px; margin-bottom:8px;">🏷️</div>
-        <div style="font-weight:600; font-size:13px;">Indirect Taxes</div>
-        <div style="font-size:11.5px; color:var(--text-secondary); margin-top:4px;">Sales Tax, Excise, Green Tax, Customs</div>
-      </a>
-      <a href="transfers.html" style="display:block; padding:20px; border:1px solid var(--border); text-decoration:none; color:var(--text-primary); transition:background 0.15s;" onmouseover="this.style.background='var(--surface-2)'" onmouseout="this.style.background=''">
-        <div style="font-size:20px; margin-bottom:8px;">🤝</div>
-        <div style="font-weight:600; font-size:13px;">Transfers</div>
-        <div style="font-size:11.5px; color:var(--text-secondary); margin-top:4px;">Kidu programme</div>
-      </a>
-      <a href="subsidies-electricity.html" style="display:block; padding:20px; border:1px solid var(--border); text-decoration:none; color:var(--text-primary); transition:background 0.15s;" onmouseover="this.style.background='var(--surface-2)'" onmouseout="this.style.background=''">
-        <div style="font-size:20px; margin-bottom:8px;">⚡</div>
-        <div style="font-weight:600; font-size:13px;">Subsidies</div>
-        <div style="font-size:11.5px; color:var(--text-secondary); margin-top:4px;">Electricity, Agriculture, Fuels</div>
-      </a>
-      <a href="social-schemes.html" style="display:block; padding:20px; border:1px solid var(--border); text-decoration:none; color:var(--text-primary); transition:background 0.15s;" onmouseover="this.style.background='var(--surface-2)'" onmouseout="this.style.background=''">
-        <div style="font-size:20px; margin-bottom:8px;">🛡️</div>
-        <div style="font-weight:600; font-size:13px;">Social Insurance</div>
-        <div style="font-size:11.5px; color:var(--text-secondary); margin-top:4px;">NPPF, PPF, RLI, GIS, GSLI</div>
-      </a>
-      <a href="education.html" style="display:block; padding:20px; border:1px solid var(--border); text-decoration:none; color:var(--text-primary); transition:background 0.15s;" onmouseover="this.style.background='var(--surface-2)'" onmouseout="this.style.background=''">
-        <div style="font-size:20px; margin-bottom:8px;">🎓</div>
-        <div style="font-weight:600; font-size:13px;">Education</div>
-        <div style="font-size:11.5px; color:var(--text-secondary); margin-top:4px;">Spending narrative &amp; budget tables</div>
-      </a>
-      <a href="health.html" style="display:block; padding:20px; border:1px solid var(--border); text-decoration:none; color:var(--text-primary); transition:background 0.15s;" onmouseover="this.style.background='var(--surface-2)'" onmouseout="this.style.background=''">
-        <div style="font-size:20px; margin-bottom:8px;">🏥</div>
-        <div style="font-weight:600; font-size:13px;">Health</div>
-        <div style="font-size:11.5px; color:var(--text-secondary); margin-top:4px;">Health expenditure data</div>
-      </a>
-      <a href="gov-expenditure.html" style="display:block; padding:20px; border:1px solid var(--border); text-decoration:none; color:var(--text-primary); transition:background 0.15s;" onmouseover="this.style.background='var(--surface-2)'" onmouseout="this.style.background=''">
-        <div style="font-size:20px; margin-bottom:8px;">🏛️</div>
-        <div style="font-weight:600; font-size:13px;">Gov. Expenditure</div>
-        <div style="font-size:11.5px; color:var(--text-secondary); margin-top:4px;">Sectoral expenditure 2017 &amp; 2022</div>
-      </a>
-      <a href="taxrev-2017.html" style="display:block; padding:20px; border:1px solid var(--border); text-decoration:none; color:var(--text-primary); transition:background 0.15s;" onmouseover="this.style.background='var(--surface-2)'" onmouseout="this.style.background=''">
-        <div style="font-size:20px; margin-bottom:8px;">📊</div>
-        <div style="font-weight:600; font-size:13px;">Tax Revenue</div>
-        <div style="font-size:11.5px; color:var(--text-secondary); margin-top:4px;">General government revenue tables</div>
-      </a>
+    <div class="tcard">
+      <div class="tcard-head tcard-head-alt"><div><h3>GSLI Premium Table where the Grades not compatible with Civil Servant</h3></div></div>
+      <table class="dt">
+        <thead><tr><th>Group</th><th>Salary Scale (Nu.)</th><th>Sum Assured (Nu.)</th><th>Insurance Premium (Nu.)</th><th>Savings (Nu.)</th><th class="h22">Monthly Sub. (Nu.)</th></tr></thead>
+        <tbody>
+          <tr><td class="num">A</td><td>60,000 &amp; above</td><td class="num">5,00,000</td><td class="num">150</td><td class="num">350</td><td class="num v22">500</td></tr>
+          <tr><td class="num">B</td><td>30,000 – 59,999</td><td class="num">4,00,000</td><td class="num">120</td><td class="num">280</td><td class="num v22">400</td></tr>
+          <tr><td class="num">C</td><td>16,000 – 29,999</td><td class="num">3,00,000</td><td class="num">90</td><td class="num">210</td><td class="num v22">300</td></tr>
+          <tr><td class="num">D</td><td>15,999 and below</td><td class="num">2,00,000</td><td class="num">60</td><td class="num">140</td><td class="num v22">200</td></tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </main>

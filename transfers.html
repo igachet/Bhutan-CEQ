@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bhutan CEQ Dashboard — Bhutan CEQ Dashboard</title>
+<title>Transfers — Bhutan CEQ Dashboard</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,400&family=Inter:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <script async src="https://hypothes.is/embed.js"></script>
 <style>
@@ -442,7 +442,7 @@
   </div>
   <a class="nav-tab" href="direct-taxes.html"><span class="tab-icon">💳</span> Direct Taxes</a>
   <a class="nav-tab" href="indirect-sales-tax.html"><span class="tab-icon">🏷️</span> Indirect Taxes</a>
-  <a class="nav-tab" href="transfers.html"><span class="tab-icon">🤝</span> Transfers</a>
+  <a class="nav-tab active" href="transfers.html"><span class="tab-icon">🤝</span> Transfers</a>
   <a class="nav-tab" href="subsidies-electricity.html"><span class="tab-icon">⚡</span> Subsidies</a>
   <a class="nav-tab" href="social-schemes.html"><span class="tab-icon">🛡️</span> Social Insurance</a>
   <a class="nav-tab" href="education.html"><span class="tab-icon">🎓</span> Education</a>
@@ -451,56 +451,107 @@
   <a class="nav-tab" href="taxrev-2017.html"><span class="tab-icon">📊</span> Tax Revenue</a>
 </nav>
 <main class="main">
+<div class="section-header">
+    <div>
+      <div class="section-title">Transfers</div>
+      <div class="section-desc">2017: CEQ 2017 — data not available. &nbsp;|&nbsp; 2022–25: Kidu programme (Druk Gyalpo's Relief Kidu).</div>
+    </div>
+    <div class="source-links">
+      <a class="source-link" href="#" onclick="return false;">📄 2022–25: UNICEF. 2025. Social Protection Situational Analysis &amp; Landscaping Assessment</a>
+      <a class="source-link" href="#" onclick="return false;">📄 Bhutan Poverty Assessment</a>
+    </div>
+  </div>
 
-  <div style="padding:60px 0 40px;">
-    <div style="font-family:'Playfair Display',serif; font-size:28px; font-weight:600; color:var(--text-primary); margin-bottom:12px;">Bhutan CEQ Fiscal Policy Dashboard</div>
-    <div style="font-size:13px; color:var(--text-secondary); margin-bottom:40px; font-weight:300;">CEQ 2017 → 2022 Update &nbsp;·&nbsp; Select a section from the left to begin.</div>
-    <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:16px; max-width:800px;">
-      <a href="direct-taxes.html" style="display:block; padding:20px; border:1px solid var(--border); text-decoration:none; color:var(--text-primary); transition:background 0.15s;" onmouseover="this.style.background='var(--surface-2)'" onmouseout="this.style.background=''">
-        <div style="font-size:20px; margin-bottom:8px;">💳</div>
-        <div style="font-weight:600; font-size:13px;">Direct Taxes</div>
-        <div style="font-size:11.5px; color:var(--text-secondary); margin-top:4px;">PIT brackets 2017 &amp; 2022–2025</div>
-      </a>
-      <a href="indirect-sales-tax.html" style="display:block; padding:20px; border:1px solid var(--border); text-decoration:none; color:var(--text-primary); transition:background 0.15s;" onmouseover="this.style.background='var(--surface-2)'" onmouseout="this.style.background=''">
-        <div style="font-size:20px; margin-bottom:8px;">🏷️</div>
-        <div style="font-weight:600; font-size:13px;">Indirect Taxes</div>
-        <div style="font-size:11.5px; color:var(--text-secondary); margin-top:4px;">Sales Tax, Excise, Green Tax, Customs</div>
-      </a>
-      <a href="transfers.html" style="display:block; padding:20px; border:1px solid var(--border); text-decoration:none; color:var(--text-primary); transition:background 0.15s;" onmouseover="this.style.background='var(--surface-2)'" onmouseout="this.style.background=''">
-        <div style="font-size:20px; margin-bottom:8px;">🤝</div>
-        <div style="font-weight:600; font-size:13px;">Transfers</div>
-        <div style="font-size:11.5px; color:var(--text-secondary); margin-top:4px;">Kidu programme</div>
-      </a>
-      <a href="subsidies-electricity.html" style="display:block; padding:20px; border:1px solid var(--border); text-decoration:none; color:var(--text-primary); transition:background 0.15s;" onmouseover="this.style.background='var(--surface-2)'" onmouseout="this.style.background=''">
-        <div style="font-size:20px; margin-bottom:8px;">⚡</div>
-        <div style="font-weight:600; font-size:13px;">Subsidies</div>
-        <div style="font-size:11.5px; color:var(--text-secondary); margin-top:4px;">Electricity, Agriculture, Fuels</div>
-      </a>
-      <a href="social-schemes.html" style="display:block; padding:20px; border:1px solid var(--border); text-decoration:none; color:var(--text-primary); transition:background 0.15s;" onmouseover="this.style.background='var(--surface-2)'" onmouseout="this.style.background=''">
-        <div style="font-size:20px; margin-bottom:8px;">🛡️</div>
-        <div style="font-weight:600; font-size:13px;">Social Insurance</div>
-        <div style="font-size:11.5px; color:var(--text-secondary); margin-top:4px;">NPPF, PPF, RLI, GIS, GSLI</div>
-      </a>
-      <a href="education.html" style="display:block; padding:20px; border:1px solid var(--border); text-decoration:none; color:var(--text-primary); transition:background 0.15s;" onmouseover="this.style.background='var(--surface-2)'" onmouseout="this.style.background=''">
-        <div style="font-size:20px; margin-bottom:8px;">🎓</div>
-        <div style="font-weight:600; font-size:13px;">Education</div>
-        <div style="font-size:11.5px; color:var(--text-secondary); margin-top:4px;">Spending narrative &amp; budget tables</div>
-      </a>
-      <a href="health.html" style="display:block; padding:20px; border:1px solid var(--border); text-decoration:none; color:var(--text-primary); transition:background 0.15s;" onmouseover="this.style.background='var(--surface-2)'" onmouseout="this.style.background=''">
-        <div style="font-size:20px; margin-bottom:8px;">🏥</div>
-        <div style="font-weight:600; font-size:13px;">Health</div>
-        <div style="font-size:11.5px; color:var(--text-secondary); margin-top:4px;">Health expenditure data</div>
-      </a>
-      <a href="gov-expenditure.html" style="display:block; padding:20px; border:1px solid var(--border); text-decoration:none; color:var(--text-primary); transition:background 0.15s;" onmouseover="this.style.background='var(--surface-2)'" onmouseout="this.style.background=''">
-        <div style="font-size:20px; margin-bottom:8px;">🏛️</div>
-        <div style="font-weight:600; font-size:13px;">Gov. Expenditure</div>
-        <div style="font-size:11.5px; color:var(--text-secondary); margin-top:4px;">Sectoral expenditure 2017 &amp; 2022</div>
-      </a>
-      <a href="taxrev-2017.html" style="display:block; padding:20px; border:1px solid var(--border); text-decoration:none; color:var(--text-primary); transition:background 0.15s;" onmouseover="this.style.background='var(--surface-2)'" onmouseout="this.style.background=''">
-        <div style="font-size:20px; margin-bottom:8px;">📊</div>
-        <div style="font-weight:600; font-size:13px;">Tax Revenue</div>
-        <div style="font-size:11.5px; color:var(--text-secondary); margin-top:4px;">General government revenue tables</div>
-      </a>
+  <div class="tcard">
+    <div class="tcard-head">
+      <div><h3>Kidu (The Royal Grant) — Programme Overview</h3></div>
+      
+    </div>
+    <div class="prose-block">
+      <p>Kidu (The Royal Grant) is Bhutan's largest and most significant social assistance programme, serving as a permanent, non-contributory safety net. While the practice of Kidu has existed since the 17th century, it was systematised in the 1950s and has since been refined into a highly organised management and disbursement system.</p>
+
+      <p style="margin-top:14px; font-weight:600; font-size:13.5px;">Programme Overview and Management</p>
+      <ul style="margin-top:8px; margin-left:24px; line-height:2;">
+        <li><strong>Administration:</strong> Administered by the Office of the Gyalpoi Zimpon and implemented through regional offices and local government officials, including Dzongdas (district governors) and Gups (block leaders).</li>
+        <li><strong>Technology:</strong> Utilizes the Kidu Information System, which is interoperable with databases from the National Land Commission and the Department of Immigration to verify eligibility and track management.</li>
+        <li><strong>Funding:</strong> Financed through the Druk Gyalpo Relief Fund Act 2012, which receives an annual Nu. 100 million replenishment from the Ministry of Finance, along with public and private donations.</li>
+      </ul>
+
+      <p style="margin-top:14px; font-weight:600; font-size:13.5px;">Eligibility Criteria</p>
+      <p style="margin-top:6px;">The Kidu programme is designed to support individuals who fall through the cracks of other social protection systems. It specifically targets:</p>
+      <ul style="margin-top:8px; margin-left:24px; line-height:2;">
+        <li>The poor and extreme poor</li>
+        <li>The landless</li>
+        <li>Persons with disabilities</li>
+        <li>Impoverished children and students</li>
+        <li>Destitute elderly citizens who lack family care</li>
+      </ul>
+
+      <p style="margin-top:14px; font-weight:600; font-size:13.5px;">Transfer Amounts and Sub-Programmes</p>
+      <p style="margin-top:6px;">Kidu provides both cash and in-kind transfers, such as land grants, timber for housing, and scholarships. Key sub-programmes include:</p>
+      <ul style="margin-top:8px; margin-left:24px; line-height:2;">
+        <li><strong>Gensho Zhabtog (Support for the Elderly):</strong> Targeted at destitute senior citizens, providing a monthly stipend of Nu. 1,200. Beneficiaries can also request basic household items and groceries.</li>
+        <li><strong>Funeral Grant:</strong> A grant of Nu. 5,000 is provided to the family of a deceased Gensho Zhabtog beneficiary to cover funeral expenses.</li>
+        <li><strong>Gyalpoi Tozey (Scholarships):</strong> Provides educational support to impoverished students (reaching 1,629 beneficiaries in 2019).</li>
+        <li><strong>Goensho Tshamkhang:</strong> An elderly care home that accommodates up to 78 inhabitants who have no family to care for them.</li>
+      </ul>
+
+      <p style="margin-top:14px; font-weight:600; font-size:13.5px;">Recent Changes and Trends</p>
+      <p style="margin-top:6px;">The most significant recent change to the Kidu framework was its adaptation to address the COVID-19 pandemic:</p>
+      <ul style="margin-top:8px; margin-left:24px; line-height:2;">
+        <li><strong>Druk Gyalpo Relief Kidu (DGRK):</strong> Established in April 2020 as an interim (temporary) measure to provide income support to those suffering from economic distress due to the pandemic.</li>
+        <li><strong>Pandemic Impact:</strong> Between April 2020 and February 2022, the DGRK provided income support to 54,783 individuals and 15,464 children, reaching approximately 8.4% of the total population.</li>
+        <li><strong>Evolution toward Shock-Responsiveness:</strong> While the core Kidu remains a permanent fixture, it increasingly acts as an ad hoc support mechanism for covariate shocks (natural disasters or economic crises) in the absence of a formal national shock-responsive social protection floor.</li>
+      </ul>
+    </div>
+    <div class="prose-note">
+      Source: UNICEF. 2025. Social Protection Situational Analysis &amp; Landscaping Assessment.
+    </div>
+  </div>
+
+  <div class="tcard">
+    <div class="tcard-head tcard-head-alt">
+      <div><h3>Kidu Recipients by Group</h3></div>
+      
+    </div>
+    <table class="dt">
+      <thead>
+        <tr>
+          <th rowspan="2" style="vertical-align:bottom">Group / Category</th>
+          <th colspan="2" style="text-align:center; border-bottom:1px solid var(--border);">2020</th>
+          <th colspan="2" style="text-align:center; border-bottom:1px solid var(--border);" class="h22">2021</th>
+        </tr>
+        <tr>
+          <th>Share of Group (%)</th>
+          <th>Share of Kidu Recipients (%)</th>
+          <th class="h22">Share of Group (%)</th>
+          <th class="h22">Share of Kidu Recipients (%)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="grp" colspan="5">Overall</td></tr>
+        <tr><td class="sub-lbl">Share of Kidu recipients (%)</td><td class="num">18.0</td><td class="num">—</td><td class="num v22">12.4</td><td class="num v22">—</td></tr>
+        <tr><td class="grp" colspan="5">By Job Type</td></tr>
+        <tr><td class="sub-lbl">Public</td><td class="num">14.8</td><td class="num">13.0</td><td class="num v22">15.6</td><td class="num v22">3.9</td></tr>
+        <tr><td class="sub-lbl">Private</td><td class="num">8.0</td><td class="num">29.2</td><td class="num v22">13.4</td><td class="num v22">18.3</td></tr>
+        <tr><td class="sub-lbl">Laborer</td><td class="num">4.5</td><td class="num">6.9</td><td class="num v22">4.7</td><td class="num v22">7.6</td></tr>
+        <tr><td class="sub-lbl">Self-employed</td><td class="num">22.7</td><td class="num">16.1</td><td class="num v22">15.8</td><td class="num v22">16.2</td></tr>
+        <tr><td class="sub-lbl">Not employed / absent</td><td class="num">52.0</td><td class="num">19.1</td><td class="num v22">50.6</td><td class="num v22">12.7</td></tr>
+        <tr><td class="grp" colspan="5">By Sector</td></tr>
+        <tr><td class="sub-lbl">Agriculture</td><td class="num">16.6</td><td class="num">7.8</td><td class="num v22">11.8</td><td class="num v22">0.5</td></tr>
+        <tr><td class="sub-lbl">Manufacturing</td><td class="num">5.2</td><td class="num">16.9</td><td class="num v22">5.7</td><td class="num v22">11.6</td></tr>
+        <tr><td class="sub-lbl">Services</td><td class="num">26.2</td><td class="num">22.5</td><td class="num v22">31.8</td><td class="num v22">13.2</td></tr>
+        <tr><td class="sub-lbl">Not employed / absent</td><td class="num">52.0</td><td class="num">19.1</td><td class="num v22">50.6</td><td class="num v22">12.7</td></tr>
+        <tr><td class="grp" colspan="5">By Urban / Rural</td></tr>
+        <tr><td class="sub-lbl">Urban</td><td class="num">36.1</td><td class="num">22.7</td><td class="num v22">38.5</td><td class="num v22">15.7</td></tr>
+        <tr><td class="sub-lbl">Rural</td><td class="num">63.9</td><td class="num">15.3</td><td class="num v22">61.5</td><td class="num v22">10.3</td></tr>
+        <tr><td class="grp" colspan="5">By COVID Shock Severity</td></tr>
+        <tr><td class="sub-lbl">Severe COVID shock</td><td class="num">16.4</td><td class="num">28.6</td><td class="num v22">—</td><td class="num v22">—</td></tr>
+        <tr><td class="sub-lbl">Severe shock not identified</td><td class="num">83.6</td><td class="num">15.9</td><td class="num v22">—</td><td class="num v22">—</td></tr>
+      </tbody>
+    </table>
+    <div style="padding:10px 14px; font-size:11px; color:var(--text-muted); border-top:1px solid var(--border); font-family:'DM Mono',monospace;">
+      Notes: "Share of group" = share of individuals in that group in total respondents. "Share of Kidu recipients" = share of individuals who received Kidu within the group. "Severe COVID shock" respondents either stopped working, not seeking a job, or decreased operations because of COVID-19. Source: Authors' calculations. · Source: Bhutan Poverty Assessment
     </div>
   </div>
 </main>

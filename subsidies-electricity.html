@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bhutan CEQ Dashboard — Bhutan CEQ Dashboard</title>
+<title>Subsidies — Electricity — Bhutan CEQ Dashboard</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,400&family=Inter:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <script async src="https://hypothes.is/embed.js"></script>
 <style>
@@ -443,7 +443,7 @@
   <a class="nav-tab" href="direct-taxes.html"><span class="tab-icon">💳</span> Direct Taxes</a>
   <a class="nav-tab" href="indirect-sales-tax.html"><span class="tab-icon">🏷️</span> Indirect Taxes</a>
   <a class="nav-tab" href="transfers.html"><span class="tab-icon">🤝</span> Transfers</a>
-  <a class="nav-tab" href="subsidies-electricity.html"><span class="tab-icon">⚡</span> Subsidies</a>
+  <a class="nav-tab active" href="subsidies-electricity.html"><span class="tab-icon">⚡</span> Subsidies</a>
   <a class="nav-tab" href="social-schemes.html"><span class="tab-icon">🛡️</span> Social Insurance</a>
   <a class="nav-tab" href="education.html"><span class="tab-icon">🎓</span> Education</a>
   <a class="nav-tab" href="health.html"><span class="tab-icon">🏥</span> Health</a>
@@ -451,58 +451,129 @@
   <a class="nav-tab" href="taxrev-2017.html"><span class="tab-icon">📊</span> Tax Revenue</a>
 </nav>
 <main class="main">
-
-  <div style="padding:60px 0 40px;">
-    <div style="font-family:'Playfair Display',serif; font-size:28px; font-weight:600; color:var(--text-primary); margin-bottom:12px;">Bhutan CEQ Fiscal Policy Dashboard</div>
-    <div style="font-size:13px; color:var(--text-secondary); margin-bottom:40px; font-weight:300;">CEQ 2017 → 2022 Update &nbsp;·&nbsp; Select a section from the left to begin.</div>
-    <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:16px; max-width:800px;">
-      <a href="direct-taxes.html" style="display:block; padding:20px; border:1px solid var(--border); text-decoration:none; color:var(--text-primary); transition:background 0.15s;" onmouseover="this.style.background='var(--surface-2)'" onmouseout="this.style.background=''">
-        <div style="font-size:20px; margin-bottom:8px;">💳</div>
-        <div style="font-weight:600; font-size:13px;">Direct Taxes</div>
-        <div style="font-size:11.5px; color:var(--text-secondary); margin-top:4px;">PIT brackets 2017 &amp; 2022–2025</div>
-      </a>
-      <a href="indirect-sales-tax.html" style="display:block; padding:20px; border:1px solid var(--border); text-decoration:none; color:var(--text-primary); transition:background 0.15s;" onmouseover="this.style.background='var(--surface-2)'" onmouseout="this.style.background=''">
-        <div style="font-size:20px; margin-bottom:8px;">🏷️</div>
-        <div style="font-weight:600; font-size:13px;">Indirect Taxes</div>
-        <div style="font-size:11.5px; color:var(--text-secondary); margin-top:4px;">Sales Tax, Excise, Green Tax, Customs</div>
-      </a>
-      <a href="transfers.html" style="display:block; padding:20px; border:1px solid var(--border); text-decoration:none; color:var(--text-primary); transition:background 0.15s;" onmouseover="this.style.background='var(--surface-2)'" onmouseout="this.style.background=''">
-        <div style="font-size:20px; margin-bottom:8px;">🤝</div>
-        <div style="font-weight:600; font-size:13px;">Transfers</div>
-        <div style="font-size:11.5px; color:var(--text-secondary); margin-top:4px;">Kidu programme</div>
-      </a>
-      <a href="subsidies-electricity.html" style="display:block; padding:20px; border:1px solid var(--border); text-decoration:none; color:var(--text-primary); transition:background 0.15s;" onmouseover="this.style.background='var(--surface-2)'" onmouseout="this.style.background=''">
-        <div style="font-size:20px; margin-bottom:8px;">⚡</div>
-        <div style="font-weight:600; font-size:13px;">Subsidies</div>
-        <div style="font-size:11.5px; color:var(--text-secondary); margin-top:4px;">Electricity, Agriculture, Fuels</div>
-      </a>
-      <a href="social-schemes.html" style="display:block; padding:20px; border:1px solid var(--border); text-decoration:none; color:var(--text-primary); transition:background 0.15s;" onmouseover="this.style.background='var(--surface-2)'" onmouseout="this.style.background=''">
-        <div style="font-size:20px; margin-bottom:8px;">🛡️</div>
-        <div style="font-weight:600; font-size:13px;">Social Insurance</div>
-        <div style="font-size:11.5px; color:var(--text-secondary); margin-top:4px;">NPPF, PPF, RLI, GIS, GSLI</div>
-      </a>
-      <a href="education.html" style="display:block; padding:20px; border:1px solid var(--border); text-decoration:none; color:var(--text-primary); transition:background 0.15s;" onmouseover="this.style.background='var(--surface-2)'" onmouseout="this.style.background=''">
-        <div style="font-size:20px; margin-bottom:8px;">🎓</div>
-        <div style="font-weight:600; font-size:13px;">Education</div>
-        <div style="font-size:11.5px; color:var(--text-secondary); margin-top:4px;">Spending narrative &amp; budget tables</div>
-      </a>
-      <a href="health.html" style="display:block; padding:20px; border:1px solid var(--border); text-decoration:none; color:var(--text-primary); transition:background 0.15s;" onmouseover="this.style.background='var(--surface-2)'" onmouseout="this.style.background=''">
-        <div style="font-size:20px; margin-bottom:8px;">🏥</div>
-        <div style="font-weight:600; font-size:13px;">Health</div>
-        <div style="font-size:11.5px; color:var(--text-secondary); margin-top:4px;">Health expenditure data</div>
-      </a>
-      <a href="gov-expenditure.html" style="display:block; padding:20px; border:1px solid var(--border); text-decoration:none; color:var(--text-primary); transition:background 0.15s;" onmouseover="this.style.background='var(--surface-2)'" onmouseout="this.style.background=''">
-        <div style="font-size:20px; margin-bottom:8px;">🏛️</div>
-        <div style="font-weight:600; font-size:13px;">Gov. Expenditure</div>
-        <div style="font-size:11.5px; color:var(--text-secondary); margin-top:4px;">Sectoral expenditure 2017 &amp; 2022</div>
-      </a>
-      <a href="taxrev-2017.html" style="display:block; padding:20px; border:1px solid var(--border); text-decoration:none; color:var(--text-primary); transition:background 0.15s;" onmouseover="this.style.background='var(--surface-2)'" onmouseout="this.style.background=''">
-        <div style="font-size:20px; margin-bottom:8px;">📊</div>
-        <div style="font-weight:600; font-size:13px;">Tax Revenue</div>
-        <div style="font-size:11.5px; color:var(--text-secondary); margin-top:4px;">General government revenue tables</div>
-      </a>
+<div class="section-header">
+    <div>
+      <div class="section-title">Subsidies</div>
+      <div class="section-desc">CEQ 2017: not included. CEQ 2022: electricity, agriculture, and fuel subsidies.</div>
     </div>
+<div class="info-box">
+    <div class="info-box-label">CEQ 2017</div>
+<div class="sub-nav">
+    <a class="sub-tab active" href="subsidies-electricity.html">Electricity</a>
+    <a class="sub-tab" href="subsidies-agriculture.html">Agriculture</a>
+    <a class="sub-tab" href="subsidies-fuels.html">Fuels</a>
   </div>
+<!-- Tariff Structure Table 64 (page 45) -->
+    <div class="tcard">
+      <div class="tcard-head tcard-head-alt">
+        <div><h3>Approved Tariff Structure — Table 64 (BPC, Page 45)</h3></div>
+      </div>
+      <table class="dt">
+        <thead>
+          <tr>
+            <th>Tariff Structure</th>
+            <th>Unit</th>
+            <th>Sep 2022 – Jun 2023</th>
+            <th class="h22">Jul 2023 – Jun 2024</th>
+            <th class="h22">Jul 2024 – Jun 2025</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td class="grp" colspan="5">Low Voltage (LV)</td></tr>
+          <tr><td class="sub-lbl">LV Block I (Rural*) — 0–100 kWh</td><td class="num">Nu./kWh</td><td class="num">0</td><td class="num v22">0</td><td class="num v22">0</td></tr>
+          <tr><td class="sub-lbl">LV Block I (High landers) — 0–200 kWh</td><td class="num">Nu./kWh</td><td class="num">0</td><td class="num v22">0</td><td class="num v22">0</td></tr>
+          <tr><td class="sub-lbl">LV Block I (Others) — 0–100 kWh</td><td class="num">Nu./kWh</td><td class="num">1.28</td><td class="num v22">1.28</td><td class="num v22">1.28</td></tr>
+          <tr><td class="sub-lbl">LV Block II (All) — &gt;100 kWh</td><td class="num">Nu./kWh</td><td class="num">2.66</td><td class="num v22">2.66</td><td class="num v22">2.66</td></tr>
+          <tr><td class="grp" colspan="5">Medium Voltage (MV)</td></tr>
+          <tr><td class="sub-lbl">Energy Charge</td><td class="num">Nu./kWh</td><td class="num">1.60</td><td class="num v22">1.60</td><td class="num v22">1.60</td></tr>
+          <tr><td class="sub-lbl">Demand Charge</td><td class="num">Nu./kVA/Month</td><td class="num">170</td><td class="num v22">170</td><td class="num v22">170</td></tr>
+          <tr><td class="grp" colspan="5">High Voltage (HV)</td></tr>
+          <tr><td class="sub-lbl">Energy Charge</td><td class="num">Nu./kWh</td><td class="num">1.60</td><td class="num v22">1.60</td><td class="num v22">1.60</td></tr>
+          <tr><td class="sub-lbl">Demand Charge</td><td class="num">Nu./kVA/Month</td><td class="num">496</td><td class="num v22">496</td><td class="num v22">496</td></tr>
+          <tr><td class="sub-lbl">Wheeling</td><td class="num">Nu./kWh</td><td class="num">0.23</td><td class="num v22">0.23</td><td class="num v22">0.23</td></tr>
+        </tbody>
+      </table>
+      <div style="padding:10px 14px; font-size:11px; color:var(--text-muted); border-top:1px solid var(--border);">
+        *Rural: Free electricity (0 Nu./kWh) for first 100 kWh/month. High landers: Free electricity for first 200 kWh/month. Nu 2.66/unit recovered from HV consumers; remaining cost covered by BPC network charge for import of energy.
+      </div>
+    </div>
+
+    <!-- Per Unit Subsidy Table 60 (page 42) -->
+    <div class="tcard">
+      <div class="tcard-head tcard-head-alt">
+        <div><h3>Per Unit Subsidy to LV &amp; MV Consumers — Table 60 (BPC, Page 42)</h3></div>
+      </div>
+      <table class="dt">
+        <thead>
+          <tr>
+            <th>Customer Category</th>
+            <th>Sep 2022 – Jun 2023 (Nu.)</th>
+            <th class="h22">Jul 2023 – Jun 2024 (Nu.)</th>
+            <th class="h22">Jul 2024 – Jun 2025 (Nu.)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td class="grp" colspan="4">Low Voltage</td></tr>
+          <tr><td class="sub-lbl">LV Block I (Rural) — 0–100 kWh</td><td class="num">2.66</td><td class="num v22">2.66</td><td class="num v22">2.66</td></tr>
+          <tr><td class="sub-lbl">LV Block I (High landers) — 0–200 kWh</td><td class="num">2.66</td><td class="num v22">2.66</td><td class="num v22">2.66</td></tr>
+          <tr><td class="sub-lbl">LV Block I (Others) — 0–100 kWh</td><td class="num">1.38</td><td class="num v22">1.38</td><td class="num v22">1.38</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Cost of Supply Tables (page 39) -->
+    <div class="grid-2">
+      <div class="tcard">
+        <div class="tcard-head tcard-head-alt">
+          <div><h3>Cost of Supply to HV Consumers — Table 53 (Page 39)</h3></div>
+        </div>
+        <table class="dt">
+          <thead><tr><th>Cost Component</th><th>2022/23</th><th class="h22">2023/24</th><th class="h22">2024/25</th></tr></thead>
+          <tbody>
+            <tr><td>Energy costs*</td><td class="num">5,538</td><td class="num v22">6,864</td><td class="num v22">7,193</td></tr>
+            <tr><td>Network costs</td><td class="num">3,241</td><td class="num v22">3,478</td><td class="num v22">3,687</td></tr>
+            <tr><td>Working capital</td><td class="num">54</td><td class="num v22">56</td><td class="num v22">60</td></tr>
+            <tr><td>Other revenue</td><td class="num">(39)</td><td class="num v22">(47)</td><td class="num v22">(5)</td></tr>
+            <tr><td>SO Charges</td><td class="num">11</td><td class="num v22">29</td><td class="num v22">92</td></tr>
+            <tr class="hl"><td class="lbl">Unsubsidized Cost of Supply</td><td class="num">8,805</td><td class="num22">10,381</td><td class="num22">11,027</td></tr>
+          </tbody>
+        </table>
+        <div style="padding:8px 14px; font-size:11px; color:var(--text-muted); border-top:1px solid var(--border);">*Energy costs include cost of energy purchased from DGPC and MHP at average generation tariff @ Nu 1.60 per Unit.</div>
+      </div>
+
+      <div class="tcard">
+        <div class="tcard-head tcard-head-alt">
+          <div><h3>Cost of Supply to LV Consumers — Table 55 (Page 39)</h3></div>
+        </div>
+        <table class="dt">
+          <thead><tr><th>Cost Component</th><th>2022/23</th><th class="h22">2023/24</th><th class="h22">2024/25</th></tr></thead>
+          <tbody>
+            <tr><td>Energy costs</td><td class="num">1,144</td><td class="num v22">1,195</td><td class="num v22">1,246</td></tr>
+            <tr><td>Network costs</td><td class="num">2,018</td><td class="num v22">2,108</td><td class="num v22">2,309</td></tr>
+            <tr><td>Working capital</td><td class="num">32</td><td class="num v22">33</td><td class="num v22">35</td></tr>
+            <tr><td>Other revenue</td><td class="num">(149)</td><td class="num v22">(149)</td><td class="num v22">(149)</td></tr>
+            <tr class="hl"><td class="lbl">Unsubsidized Cost of Supply</td><td class="num">3,045</td><td class="num22">3,187</td><td class="num22">3,441</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Table 54 MV — from image -->
+    <div class="tcard">
+      <div class="tcard-head tcard-head-alt">
+        <div><h3>Reviewed Domestic Cost of Supply to MV Consumers — Table 54</h3><div class="sub">Nu. in Millions</div></div>
+      </div>
+      <table class="dt">
+        <thead><tr><th>Cost Component</th><th>2022/23</th><th class="h22">2023/24</th><th class="h22">2024/25</th></tr></thead>
+        <tbody>
+          <tr><td>Energy costs</td><td class="num">234</td><td class="num v22">451</td><td class="num v22">610</td></tr>
+          <tr><td>Network costs</td><td class="num">484</td><td class="num v22">511</td><td class="num v22">551</td></tr>
+          <tr><td>Working capital</td><td class="num">8</td><td class="num v22">8</td><td class="num v22">9</td></tr>
+          <tr><td>Other revenue</td><td class="num">(4)</td><td class="num v22">(0)</td><td class="num v22">(0)</td></tr>
+          <tr class="hl"><td class="lbl">Unsubsidized Cost of Supply</td><td class="num">723</td><td class="num22">971</td><td class="num22">1,170</td></tr>
+        </tbody>
+      </table>
+    </div>
 </main>
 </div>
 </body>
